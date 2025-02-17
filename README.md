@@ -1,9 +1,11 @@
 Abhivani - Custom Shopify Theme
 
 Welcome to the official GitHub repository for Abhivani, a premium clothing brand specializing in Kurtas, Tops, Tunics, Kurtis, Co-ords, and Gowns. This repository contains the custom Shopify theme designed and developed for Abhivani.
+
 🌟 About Abhivani
 
 Abhivani is an elegant and modern fashion brand offering a wide range of stylish apparel. Our goal is to bring high-quality clothing with a perfect blend of tradition and contemporary designs.
+
 🎨 Theme Features
 
     Full-width banner for an immersive shopping experience
@@ -17,12 +19,12 @@ Abhivani is an elegant and modern fashion brand offering a wide range of stylish
 Visit the live store: Abhivani.com
 📌 Installation & Development
 
-    Clone this repository:
+Clone this repository:
 
     git clone https://github.com/YOUR_GITHUB_USERNAME/Abhivani-Shopify-Theme.git
 
-    Connect with Shopify using Shopify CLI
-    Deploy changes and test on the Shopify store
+Connect with Shopify using Shopify CLI
+Deploy changes and test on the Shopify store
 
 🚀 Contributions & Issues
 
