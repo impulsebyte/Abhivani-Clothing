@@ -1,0 +1,1412 @@
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+{{ 'section-footer.css' | asset_url | stylesheet_tag }}
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .footer {
+    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .footer {
+      margin-top: {{ section.settings.margin_top }}px;
+    }
+
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<footer class="bg-zinc-950">
+  <div class="lg:px-9 px-4 2xl:px-[270px]">
+    <div class="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-6 py-14">
+      <div class="md:col-span-3">
+        <div class="hidden md:block">
+          <div class="grid grid-cols-3 gap-6">
+            <div>
+              <h5 class="text-17 font-semibold uppercase font-chivo text-white">Shop</h5>
+              <ul class="mt-6 space-y-3">
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="#">New in</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="index.html">Woman</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="header-men.html">Men</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="#">Shoes</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="bag.html">Bags & Accessories</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="brands.html">Top Brands</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h5 class="text-17 font-semibold uppercase font-chivo text-white">Information</h5>
+              <ul class="mt-6 space-y-3">
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="about-01.html">About</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="#">Customer Service</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="#">Reward Program</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="#">Shipping & Returns</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="faqs-1.html">Privacy Policy</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="#">Terms & Conditions</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="blog-01.html">Blog</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h5 class="text-17 font-semibold uppercase font-chivo text-white">Customer Service</h5>
+              <ul class="mt-6 space-y-3">
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="#">Search Terms</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="#">Advanced Search</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="#">Orders & Returns</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="contact-us-1.html">Contact Us</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="#">Theme FAQs</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="#">Consultant</a>
+                </li>
+                <li class="text-base font-chivo  text-zinc-300 hover:underline hover:text-[#cccccc] transition-all duration-500">
+                  <a href="#">Store Locations</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- FAQ -->
+        <div class="md:hidden">
+          <ul class="shadow-box">
+            <li
+              class="relative border-b border-gray-200 text-[#cccccc] font-chivo"
+              x-data="{ selected: null }"
+              x-ref="container1"
+            >
+              <button
+                type="button"
+                class="w-full py-4 text-left flex justify-between"
+                @click="selected !== 1 ? selected = 1 : selected = null"
+              >
+                <div class="flex items-center justify-between">
+                  <span class="font-bold uppercase text-17 text-white">Shop</span>
+                  <span class="ico-plus"></span>
+                </div>
+                <a href="#!">
+                  <i data-lucide="plus" class="w-4 h-4 stroke-2 plus-icon" x-show="!selected"></i>
+                  <i data-lucide="minus" class="w-4 h-4 stroke-2 minus-icon" x-show="selected"></i>
+                </a>
+              </button>
+              <div
+                class="relative overflow-hidden transition-all max-h-0 duration-700 "
+                x-ref="container2"
+                x-bind:style="selected == 1 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : ''"
+              >
+                <ul class="mt-3 space-y-1.5">
+                  <li class="text-lg font-medium transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      href="#"
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                    >
+                      New in</a
+                    >
+                  </li>
+                  <li class="text-lg font-medium transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      href="#"
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      >Woman</a
+                    >
+                  </li>
+                  <li class="text-lg font-medium transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      href="header-men.html"
+                      >Men</a
+                    >
+                  </li>
+                  <li class="text-lg font-medium transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      href="#"
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      >Shoes</a
+                    >
+                  </li>
+                  <li class="text-lg font-medium transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      href="bag.html"
+                      >Bags & Accessories</a
+                    >
+                  </li>
+                  <li class="text-lg font-medium transition-all pb-4 duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      href="brands.html"
+                      >Top Brands</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="relative border-b border-gray-200 text-[#cccccc] my-2" x-data="{selected:null}">
+              <button
+                type="button"
+                class="w-full py-4 text-left flex justify-between"
+                @click="selected !== 2 ? selected = 2 : selected = null"
+              >
+                <div class="flex items-center justify-between">
+                  <span class="font-bold uppercase text-17 text-white font-chivo">Information </span>
+                  <span class="ico-plus"></span>
+                </div>
+                <a href="#!">
+                  <i data-lucide="plus" class="w-4 h-4 stroke-2 plus-icon" x-show="!selected"></i>
+                  <i data-lucide="minus" class="w-4 h-4 stroke-2 minus-icon" x-show="selected"></i>
+                </a>
+              </button>
+              <div
+                class="relative overflow-hidden transition-all max-h-0 duration-700 "
+                x-ref="container2"
+                x-bind:style="selected == 2 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : ''"
+              >
+                <ul class="mt-3 space-y-1.5">
+                  <li class="text-lg font-medium transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      href="about-01.html"
+                      >About</a
+                    >
+                  </li>
+                  <li class="text-lg font-medium transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      href="#"
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      >Customer Service</a
+                    >
+                  </li>
+                  <li class="text-lg font-medium transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      href="#"
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      >Reward Program</a
+                    >
+                  </li>
+                  <li class="text-lg font-medium transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      href="#"
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      >Shipping & Returns</a
+                    >
+                  </li>
+                  <li class="text-lg font-medium transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      href="faqs-1.html"
+                      >Privacy Policy</a
+                    >
+                  </li>
+                  <li class="text-lg font-medium transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      href="#"
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      >Terms & Conditions</a
+                    >
+                  </li>
+                  <li class="text-lg pb-4 font-medium transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      href="blog-01.html"
+                      >Blog</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="relative border-b border-gray-200 text-[#cccccc]" x-data="{selected:null}">
+              <button
+                type="button"
+                class="w-full py-4 text-left flex justify-between"
+                @click="selected !== 2 ? selected = 2 : selected = null"
+              >
+                <div class="flex items-center justify-between">
+                  <span class="font-bold uppercase text-17 text-white font-chivo">CUSTOMER SERVICE </span>
+                  <span class="ico-plus"></span>
+                </div>
+                <a href="#!">
+                  <i data-lucide="plus" class="w-4 h-4 stroke-2 plus-icon" x-show="!selected"></i>
+                  <i data-lucide="minus" class="w-4 h-4 stroke-2 minus-icon" x-show="selected"></i>
+                </a>
+              </button>
+              <div
+                class="relative overflow-hidden transition-all max-h-0 duration-700 "
+                x-ref="container2"
+                x-bind:style="selected == 2 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : ''"
+              >
+                <ul class="mt-3 space-y-1.5">
+                  <li class="text-base transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      href="#"
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      >Search Terms</a
+                    >
+                  </li>
+                  <li class="text-base transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      href="#"
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      >Advanced Search</a
+                    >
+                  </li>
+                  <li class="text-base transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      href="#"
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      >Orders & Returns</a
+                    >
+                  </li>
+                  <li class="text-base transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      href="#"
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      >Contact Us</a
+                    >
+                  </li>
+                  <li class="text-base transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      href="#"
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      >Theme FAQs</a
+                    >
+                  </li>
+                  <li class="text-base transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      href="#"
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      >Consultant</a
+                    >
+                  </li>
+                  <li class="text-base pb-4 font-medium transition-all duration-500 text-[#bfbfbf] hover:text-[#cccccc] hover:underline">
+                    <a
+                      href="#"
+                      class="py-1.5 text-base text-[#bfbfbf] hover:text-[#cccccc] relative before:bottom-[1px] before:left-0 before:absolute before:w-0 before:h-[1px] before:bg-white hover:before:w-full before:transition-all before:duration-500 before:ease-in-out inline-block transition-all duration-500"
+                      >Store Locations</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- End FAQ -->
+      </div>
+      <div class=" md:col-span-1">
+        <h5 class="text-17 font-semibold uppercase font-chivo text-white">Follow Us</h5>
+        <ul class="flex flex-wrap md:flex-wrap items-center gap-7 mt-6">
+          <li>
+            <a
+              href="https://www.facebook.com/"
+              class="inline-block text-white hover:text-green-600 transition-all duration-500"
+              ><i class="ri-facebook-fill text-3xl"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.instagram.com/"
+              class="inline-block text-white hover:text-green-600 transition-all duration-500"
+              ><i class="ri-instagram-fill text-3xl"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.pinterest.com/"
+              class="inline-block text-white hover:text-green-600 transition-all duration-500"
+              ><i class="ri-pinterest-fill text-3xl"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://tiktok.com/"
+              class="inline-block text-white hover:text-green-600 transition-all duration-500"
+              ><i class="ri-tiktok-line text-3xl"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.youtube.com/"
+              class="inline-block text-white hover:text-green-600 transition-all duration-500"
+              ><i class="ri-youtube-fill text-3xl"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://x.com/" class="inline-block text-white hover:text-green-600 transition-all duration-500"
+              ><i class="ri-twitter-fill text-3xl"></i
+            ></a>
+          </li>
+        </ul>
+        <h5 class="text-17 font-semibold uppercase font-chivo text-white mt-8">sign up for newsletters</h5>
+        <P class="text-14 font-medium font-chivo italic text-[#cccccc]/80 mt-4"
+          >*Sign up to receive Halo emails and get first dibs on new arrivals, sales, exclusive content, events and
+          more!</P
+        >
+        <div>
+          <form class="flex items-center gap-1 mt-8">
+            <input
+              type="text"
+              class="py-[6px] px-[14px] w-full outline-none border-2 border-white text-zinc-950 bg-zinc-100 placeholder:text-zinc-800 focus:border-white focus:outline-0"
+              placeholder="Your email address..."
+            >
+            <button type="submit" class="py-2 px-6 uppercase bg-green-600">Subcribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <hr class="border-zinc-400">
+    <div class="flex flex-wrap items-center justify-between gap-5 py-5">
+      <div class="text-center">
+        <small class="text-14 font-inter  text-[#cccccc]">
+          ©
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          , Vibecrafts. All rights reserved.
+        </small>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-5">
+        <div class="payment-methods--item">
+          <svg class="h-8" viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pi-visa">
+            <title id="pi-visa">Visa</title>
+            <path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path>
+            <path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path>
+            <path d="M28.3 10.1H28c-.4 1-.7 1.5-1 3h1.9c-.3-1.5-.3-2.2-.6-3zm2.9 5.9h-1.7c-.1 0-.1 0-.2-.1l-.2-.9-.1-.2h-2.4c-.1 0-.2 0-.2.2l-.3.9c0 .1-.1.1-.1.1h-2.1l.2-.5L27 8.7c0-.5.3-.7.8-.7h1.5c.1 0 .2 0 .2.2l1.4 6.5c.1.4.2.7.2 1.1.1.1.1.1.1.2zm-13.4-.3l.4-1.8c.1 0 .2.1.2.1.7.3 1.4.5 2.1.4.2 0 .5-.1.7-.2.5-.2.5-.7.1-1.1-.2-.2-.5-.3-.8-.5-.4-.2-.8-.4-1.1-.7-1.2-1-.8-2.4-.1-3.1.6-.4.9-.8 1.7-.8 1.2 0 2.5 0 3.1.2h.1c-.1.6-.2 1.1-.4 1.7-.5-.2-1-.4-1.5-.4-.3 0-.6 0-.9.1-.2 0-.3.1-.4.2-.2.2-.2.5 0 .7l.5.4c.4.2.8.4 1.1.6.5.3 1 .8 1.1 1.4.2.9-.1 1.7-.9 2.3-.5.4-.7.6-1.4.6-1.4 0-2.5.1-3.4-.2-.1.2-.1.2-.2.1zm-3.5.3c.1-.7.1-.7.2-1 .5-2.2 1-4.5 1.4-6.7.1-.2.1-.3.3-.3H18c-.2 1.2-.4 2.1-.7 3.2-.3 1.5-.6 3-1 4.5 0 .2-.1.2-.3.2M5 8.2c0-.1.2-.2.3-.2h3.4c.5 0 .9.3 1 .8l.9 4.4c0 .1 0 .1.1.2 0-.1.1-.1.1-.1l2.1-5.1c-.1-.1 0-.2.1-.2h2.1c0 .1 0 .1-.1.2l-3.1 7.3c-.1.2-.1.3-.2.4-.1.1-.3 0-.5 0H9.7c-.1 0-.2 0-.2-.2L7.9 9.5c-.2-.2-.5-.5-.9-.6-.6-.3-1.7-.5-1.9-.5L5 8.2z" fill="#142688"></path>
+          </svg>
+        </div>
+        <div class="payment-methods--item">
+          <svg
+            class="h-8"
+            viewBox="0 0 38 24"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-labelledby="pi-master"
+          >
+            <title id="pi-master">Mastercard</title>
+            <path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path>
+            <path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path>
+            <circle fill="#EB001B" cx="15" cy="12" r="7"></circle>
+            <circle fill="#F79E1B" cx="23" cy="12" r="7"></circle>
+            <path fill="#FF5F00" d="M22 12c0-2.4-1.2-4.5-3-5.7-1.8 1.3-3 3.4-3 5.7s1.2 4.5 3 5.7c1.8-1.2 3-3.3 3-5.7z"></path>
+          </svg>
+        </div>
+        <div class="payment-methods--item">
+          <svg
+            class="h-8"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-labelledby="pi-american_express"
+            viewBox="0 0 38 24"
+          >
+            <title id="pi-american_express">American Express</title>
+            <path fill="#000" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3Z" opacity=".07"></path>
+            <path fill="#006FCF" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32Z"></path>
+            <path fill="#FFF" d="M22.012 19.936v-8.421L37 11.528v2.326l-1.732 1.852L37 17.573v2.375h-2.766l-1.47-1.622-1.46 1.628-9.292-.02Z"></path>
+            <path fill="#006FCF" d="M23.013 19.012v-6.57h5.572v1.513h-3.768v1.028h3.678v1.488h-3.678v1.01h3.768v1.531h-5.572Z"></path>
+            <path fill="#006FCF" d="m28.557 19.012 3.083-3.289-3.083-3.282h2.386l1.884 2.083 1.89-2.082H37v.051l-3.017 3.23L37 18.92v.093h-2.307l-1.917-2.103-1.898 2.104h-2.321Z"></path>
+            <path fill="#FFF" d="M22.71 4.04h3.614l1.269 2.881V4.04h4.46l.77 2.159.771-2.159H37v8.421H19l3.71-8.421Z"></path>
+            <path fill="#006FCF" d="m23.395 4.955-2.916 6.566h2l.55-1.315h2.98l.55 1.315h2.05l-2.904-6.566h-2.31Zm.25 3.777.875-2.09.873 2.09h-1.748Z"></path>
+            <path fill="#006FCF" d="M28.581 11.52V4.953l2.811.01L32.84 9l1.456-4.046H37v6.565l-1.74.016v-4.51l-1.644 4.494h-1.59L30.35 7.01v4.51h-1.768Z"></path>
+          </svg>
+        </div>
+        <div class="payment-methods--item">
+          <svg
+            class="h-8"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            x="0"
+            y="0"
+            viewBox="0 0 165.521 105.965"
+            xml:space="preserve"
+            aria-labelledby="pi-apple_pay"
+          >
+            <title id="pi-apple_pay">Apple Pay</title>
+            <path fill="#000" d="M150.698 0H14.823c-.566 0-1.133 0-1.698.003-.477.004-.953.009-1.43.022-1.039.028-2.087.09-3.113.274a10.51 10.51 0 0 0-2.958.975 9.932 9.932 0 0 0-4.35 4.35 10.463 10.463 0 0 0-.975 2.96C.113 9.611.052 10.658.024 11.696a70.22 70.22 0 0 0-.022 1.43C0 13.69 0 14.256 0 14.823v76.318c0 .567 0 1.132.002 1.699.003.476.009.953.022 1.43.028 1.036.09 2.084.275 3.11a10.46 10.46 0 0 0 .974 2.96 9.897 9.897 0 0 0 1.83 2.52 9.874 9.874 0 0 0 2.52 1.83c.947.483 1.917.79 2.96.977 1.025.183 2.073.245 3.112.273.477.011.953.017 1.43.02.565.004 1.132.004 1.698.004h135.875c.565 0 1.132 0 1.697-.004.476-.002.952-.009 1.431-.02 1.037-.028 2.085-.09 3.113-.273a10.478 10.478 0 0 0 2.958-.977 9.955 9.955 0 0 0 4.35-4.35c.483-.947.789-1.917.974-2.96.186-1.026.246-2.074.274-3.11.013-.477.02-.954.022-1.43.004-.567.004-1.132.004-1.699V14.824c0-.567 0-1.133-.004-1.699a63.067 63.067 0 0 0-.022-1.429c-.028-1.038-.088-2.085-.274-3.112a10.4 10.4 0 0 0-.974-2.96 9.94 9.94 0 0 0-4.35-4.35A10.52 10.52 0 0 0 156.939.3c-1.028-.185-2.076-.246-3.113-.274a71.417 71.417 0 0 0-1.431-.022C151.83 0 151.263 0 150.698 0z"></path>
+            <path fill="#FFF" d="M150.698 3.532l1.672.003c.452.003.905.008 1.36.02.793.022 1.719.065 2.583.22.75.135 1.38.34 1.984.648a6.392 6.392 0 0 1 2.804 2.807c.306.6.51 1.226.645 1.983.154.854.197 1.783.218 2.58.013.45.019.9.02 1.36.005.557.005 1.113.005 1.671v76.318c0 .558 0 1.114-.004 1.682-.002.45-.008.9-.02 1.35-.022.796-.065 1.725-.221 2.589a6.855 6.855 0 0 1-.645 1.975 6.397 6.397 0 0 1-2.808 2.807c-.6.306-1.228.511-1.971.645-.881.157-1.847.2-2.574.22-.457.01-.912.017-1.379.019-.555.004-1.113.004-1.669.004H14.801c-.55 0-1.1 0-1.66-.004a74.993 74.993 0 0 1-1.35-.018c-.744-.02-1.71-.064-2.584-.22a6.938 6.938 0 0 1-1.986-.65 6.337 6.337 0 0 1-1.622-1.18 6.355 6.355 0 0 1-1.178-1.623 6.935 6.935 0 0 1-.646-1.985c-.156-.863-.2-1.788-.22-2.578a66.088 66.088 0 0 1-.02-1.355l-.003-1.327V14.474l.002-1.325a66.7 66.7 0 0 1 .02-1.357c.022-.792.065-1.717.222-2.587a6.924 6.924 0 0 1 .646-1.981c.304-.598.7-1.144 1.18-1.623a6.386 6.386 0 0 1 1.624-1.18 6.96 6.96 0 0 1 1.98-.646c.865-.155 1.792-.198 2.586-.22.452-.012.905-.017 1.354-.02l1.677-.003h135.875"></path>
+            <g>
+                <g>
+                    <path fill="#000" d="M43.508 35.77c1.404-1.755 2.356-4.112 2.105-6.52-2.054.102-4.56 1.355-6.012 3.112-1.303 1.504-2.456 3.959-2.156 6.266 2.306.2 4.61-1.152 6.063-2.858"></path>
+                    <path fill="#000" d="M45.587 39.079c-3.35-.2-6.196 1.9-7.795 1.9-1.6 0-4.049-1.8-6.698-1.751-3.447.05-6.645 2-8.395 5.1-3.598 6.2-.95 15.4 2.55 20.45 1.699 2.5 3.747 5.25 6.445 5.151 2.55-.1 3.549-1.65 6.647-1.65 3.097 0 3.997 1.65 6.696 1.6 2.798-.05 4.548-2.5 6.247-5 1.95-2.85 2.747-5.6 2.797-5.75-.05-.05-5.396-2.101-5.446-8.251-.05-5.15 4.198-7.6 4.398-7.751-2.399-3.548-6.147-3.948-7.447-4.048"></path>
+                </g>
+                <g>
+                    <path fill="#000" d="M78.973 32.11c7.278 0 12.347 5.017 12.347 12.321 0 7.33-5.173 12.373-12.529 12.373h-8.058V69.62h-5.822V32.11h14.062zm-8.24 19.807h6.68c5.07 0 7.954-2.729 7.954-7.46 0-4.73-2.885-7.434-7.928-7.434h-6.706v14.894z"></path>
+                    <path fill="#000" d="M92.764 61.847c0-4.809 3.665-7.564 10.423-7.98l7.252-.442v-2.08c0-3.04-2.001-4.704-5.562-4.704-2.938 0-5.07 1.507-5.51 3.82h-5.252c.157-4.86 4.731-8.395 10.918-8.395 6.654 0 10.995 3.483 10.995 8.89v18.663h-5.38v-4.497h-.13c-1.534 2.937-4.914 4.782-8.579 4.782-5.406 0-9.175-3.222-9.175-8.057zm17.675-2.417v-2.106l-6.472.416c-3.64.234-5.536 1.585-5.536 3.95 0 2.288 1.975 3.77 5.068 3.77 3.95 0 6.94-2.522 6.94-6.03z"></path>
+                    <path fill="#000" d="M120.975 79.652v-4.496c.364.051 1.247.103 1.715.103 2.573 0 4.029-1.09 4.913-3.899l.52-1.663-9.852-27.293h6.082l6.863 22.146h.13l6.862-22.146h5.927l-10.216 28.67c-2.34 6.577-5.017 8.735-10.683 8.735-.442 0-1.872-.052-2.261-.157z"></path>
+                </g>
+            </g>
+          </svg>
+        </div>
+        <div class="payment-methods--item">
+          <svg
+            class="h-8"
+            viewBox="0 0 38 24"
+            role="img"
+            aria-labelledby="pi-discover"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title id="pi-discover">Discover</title>
+            <path fill="#000" opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path>
+            <path d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32z" fill="#fff"></path>
+            <path d="M3.57 7.16H2v5.5h1.57c.83 0 1.43-.2 1.96-.63.63-.52 1-1.3 1-2.11-.01-1.63-1.22-2.76-2.96-2.76zm1.26 4.14c-.34.3-.77.44-1.47.44h-.29V8.1h.29c.69 0 1.11.12 1.47.44.37.33.59.84.59 1.37 0 .53-.22 1.06-.59 1.39zm2.19-4.14h1.07v5.5H7.02v-5.5zm3.69 2.11c-.64-.24-.83-.4-.83-.69 0-.35.34-.61.8-.61.32 0 .59.13.86.45l.56-.73c-.46-.4-1.01-.61-1.62-.61-.97 0-1.72.68-1.72 1.58 0 .76.35 1.15 1.35 1.51.42.15.63.25.74.31.21.14.32.34.32.57 0 .45-.35.78-.83.78-.51 0-.92-.26-1.17-.73l-.69.67c.49.73 1.09 1.05 1.9 1.05 1.11 0 1.9-.74 1.9-1.81.02-.89-.35-1.29-1.57-1.74zm1.92.65c0 1.62 1.27 2.87 2.9 2.87.46 0 .86-.09 1.34-.32v-1.26c-.43.43-.81.6-1.29.6-1.08 0-1.85-.78-1.85-1.9 0-1.06.79-1.89 1.8-1.89.51 0 .9.18 1.34.62V7.38c-.47-.24-.86-.34-1.32-.34-1.61 0-2.92 1.28-2.92 2.88zm12.76.94l-1.47-3.7h-1.17l2.33 5.64h.58l2.37-5.64h-1.16l-1.48 3.7zm3.13 1.8h3.04v-.93h-1.97v-1.48h1.9v-.93h-1.9V8.1h1.97v-.94h-3.04v5.5zm7.29-3.87c0-1.03-.71-1.62-1.95-1.62h-1.59v5.5h1.07v-2.21h.14l1.48 2.21h1.32l-1.73-2.32c.81-.17 1.26-.72 1.26-1.56zm-2.16.91h-.31V8.03h.33c.67 0 1.03.28 1.03.82 0 .55-.36.85-1.05.85z" fill="#231F20"></path>
+            <path d="M20.16 12.86a2.931 2.931 0 100-5.862 2.931 2.931 0 000 5.862z" fill="url(#pi-paint0_linear)"></path>
+            <path opacity=".65" d="M20.16 12.86a2.931 2.931 0 100-5.862 2.931 2.931 0 000 5.862z" fill="url(#pi-paint1_linear)"></path>
+            <path d="M36.57 7.506c0-.1-.07-.15-.18-.15h-.16v.48h.12v-.19l.14.19h.14l-.16-.2c.06-.01.1-.06.1-.13zm-.2.07h-.02v-.13h.02c.06 0 .09.02.09.06 0 .05-.03.07-.09.07z" fill="#231F20"></path>
+            <path d="M36.41 7.176c-.23 0-.42.19-.42.42 0 .23.19.42.42.42.23 0 .42-.19.42-.42 0-.23-.19-.42-.42-.42zm0 .77c-.18 0-.34-.15-.34-.35 0-.19.15-.35.34-.35.18 0 .33.16.33.35 0 .19-.15.35-.33.35z" fill="#231F20"></path>
+            <path d="M37 12.984S27.09 19.873 8.976 23h26.023a2 2 0 002-1.984l.024-3.02L37 12.985z" fill="#F48120"></path>
+            <defs>
+                <linearGradient id="pi-paint0_linear" x1="21.657" y1="12.275" x2="19.632" y2="9.104" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#F89F20"></stop>
+                    <stop offset=".25" stop-color="#F79A20"></stop>
+                    <stop offset=".533" stop-color="#F68D20"></stop>
+                    <stop offset=".62" stop-color="#F58720"></stop>
+                    <stop offset=".723" stop-color="#F48120"></stop>
+                    <stop offset="1" stop-color="#F37521"></stop>
+                </linearGradient>
+                <linearGradient id="pi-paint1_linear" x1="21.338" y1="12.232" x2="18.378" y2="6.446" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#F58720"></stop>
+                    <stop offset=".359" stop-color="#E16F27"></stop>
+                    <stop offset=".703" stop-color="#D4602C"></stop>
+                    <stop offset=".982" stop-color="#D05B2E"></stop>
+                </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="payment-methods--item">
+          <svg
+            class="h-8"
+            viewBox="0 0 38 24"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-labelledby="pi-paypal"
+          >
+            <title id="pi-paypal">PayPal</title>
+            <path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path>
+            <path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path>
+            <path fill="#003087" d="M23.9 8.3c.2-1 0-1.7-.6-2.3-.6-.7-1.7-1-3.1-1h-4.1c-.3 0-.5.2-.6.5L14 15.6c0 .2.1.4.3.4H17l.4-3.4 1.8-2.2 4.7-2.1z"></path>
+            <path fill="#3086C8" d="M23.9 8.3l-.2.2c-.5 2.8-2.2 3.8-4.6 3.8H18c-.3 0-.5.2-.6.5l-.6 3.9-.2 1c0 .2.1.4.3.4H19c.3 0 .5-.2.5-.4v-.1l.4-2.4v-.1c0-.2.3-.4.5-.4h.3c2.1 0 3.7-.8 4.1-3.2.2-1 .1-1.8-.4-2.4-.1-.5-.3-.7-.5-.8z"></path>
+            <path fill="#012169" d="M23.3 8.1c-.1-.1-.2-.1-.3-.1-.1 0-.2 0-.3-.1-.3-.1-.7-.1-1.1-.1h-3c-.1 0-.2 0-.2.1-.2.1-.3.2-.3.4l-.7 4.4v.1c0-.3.3-.5.6-.5h1.3c2.5 0 4.1-1 4.6-3.8v-.2c-.1-.1-.3-.2-.5-.2h-.1z"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class=" bg-white text-black fixed bottom-0 w-full lg:hidden z-40 flex justify-between pt-2.5 px-4 shadow-xl">
+  <a href="urban-fashion.html">
+    <img src="assets/images/f-1.png" class="w-[26px] ml-1" alt="">
+    <p class="text-13 font-medium mt-1.5">Home</p>
+  </a>
+  <div>
+    <div x-data="{id:'modal-search'}" @click="$dispatch('modal-overlay', {id})">
+      <img
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAnhJREFUWEfV1knIzVEYx/HPK5EhZdiYQlKUTIWNaclCkmmDUqZEFFlIUbKSlGnBgiIlkowbFsaNMmYek2KjSJII/+ftXF1v9973/79x35y6dft3znm+5zm/5/ecJm08mto4vv8aoCNmYSpGYiB+4hVu4zxO4FutLNebgWnYm4LW2v8ZluNitUn1AGzOTropbfgaR3EWd9K3UZiOueiXvq3D9koQRQFKwT9hPk6ntFfaux3m4AA6YTV2tpxYBCBOdQpfshOPzTa/n7OCxuEaAmgyrpavywvQFU/QGwtwOGfw0rQ12IFHmTBHlAszL8AK7Mnu9QGG10h7Na4OqTriADNxsjQxL8A5hPJXJpCCCWievhUbsB9LiwK8yRb2xWC8qCc6JuAKbmVaGlMU4CsijZ2TCOth6IH3+IDuRQE+p+DdECVYz4i1H9P6+N888mrgZXK9UPC9eqJjNG6m8g0hFwI4nnx/PbbVCbARWzIdHcp0tLAowBLsS14wDD8KQrTPnDP6woBk0ceKAoSVhu/3wqLsOg4WBFiVbDjMLK4xRF3oCmLybAR5USsO276erHhKKsXf/HlFGAv6p44XJRRqjmZ0pkYmwvvnJePpkpVgZGF3y/l5ASL45VQJUcs900ZRHdGOwynvJq8Ihc9InbBPsu3ohLsqweYBKA/+FJPSL3pDaKLWeIhlLdNevqA1gAh+CYPwGHGH79IGIczF2dNrPIZgaDrtc9zIrPdCajrfaxHWAojXTHh3vPWihCaWBS9YBNWnVwNoSPBqVtyw4JUAGhq8EkDp5RN3Hmp/+9cuu8pGlTSwFkcaEbyaBv71of/YvzUf+OcwbQ7wCzFgdyGrv6rhAAAAAElFTkSuQmCC"
+        class="w-6 ml-3"
+        alt=""
+      >
+      <p class="text-13 font-medium mt-1">Search</p>
+    </div>
+    <div
+      style="display: none;"
+      class="fixed inset-0 z-[99] lg:flex lg:flex-col xl:items-center bg-[#0000004d] justify-start overflow-y-auto "
+      x-data="{modal: false}"
+      x-show="modal"
+      @modal-overlay.window="if ($event.detail.id === 'modal-search')  modal = true; document.body.classList.add('overflow-y-hidden')"
+      x-transition:enter="transition ease-out duration-300"
+    >
+      <div
+        @click.away="modal = false; document.body.classList.remove('overflow-y-hidden')"
+        class="bg-white font-chivo xl:mt-32  relative w-[90%] md:w-[400px] xl:w-full ml-0"
+      >
+        <div class=" mx-auto relative">
+          <div @click="modal = false" class="cursor-pointer hidden xl:block absolute top-8 right-10 ">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-7 fill-black"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+              focusable="false"
+              role="presentation"
+            >
+              <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+            </svg>
+          </div>
+          <div class="xl:hidden fixed top-0 w-[90%] md:w-[400px] z-50 bg-white">
+            <h2 class="text-2xl md:text-3xl  text-center py-6">My search</h2>
+            <form action="#" class="px-5 py-6 ">
+              <div class="flex justify-between border-gray-200">
+                <div class="border-b flex-grow">
+                  <input
+                    type="text"
+                    class="bg-white text-base w-full font-jost  pb-1.5 placeholder:text-[#808080] text-black focus:text-black focus:border-transparent focus:outline-0"
+                    placeholder="Search for anything"
+                  >
+                </div>
+                <svg
+                  class="w-7  transform rotate-[270deg] fill-black"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 32 32"
+                  aria-hidden="true"
+                  focusable="false"
+                  role="presentation"
+                >
+                  <path d="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z"></path>
+                </svg>
+              </div>
+            </form>
+          </div>
+          <div class="p-5">
+            <form action="#" class="">
+              <div class="flex justify-between border-gray-200">
+                <div class="border-b flex-grow">
+                  <input
+                    type="text"
+                    class="bg-white text-base font-jost w-full  pb-1.5 placeholder:text-[#808080] text-black focus:text-black focus:border-transparent focus:outline-0"
+                    placeholder="Search for anything"
+                  >
+                </div>
+                <svg
+                  class="w-7  transform rotate-[270deg] fill-black"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 32 32"
+                  aria-hidden="true"
+                  focusable="false"
+                  role="presentation"
+                >
+                  <path d="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z"></path>
+                </svg>
+              </div>
+            </form>
+            <div class="py-5 xl:py-8 mt-[110px] xl:mt-0">
+              <div class="flex justify-between items-center gap-4 mb-6 ">
+                <h3 class="text-base font-bold relative">
+                  <span class="relative z-10 pr-5 bg-white text-black upperase">Trending</span>
+                </h3>
+                <div
+                  @click="modal = false;  document.body.classList.remove('overflow-y-hidden') "
+                  class="cursor-pointer fixed top-0 left-[90%] md:left-[400px] bg-black p-3 w-10 h-10 z-[99] xl:hidden"
+                >
+                  <svg
+                    class="fill-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5"
+                    viewBox="0 0 48 48"
+                    aria-hidden="true"
+                    focusable="false"
+                    role="presentation"
+                  >
+                    <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                  </svg>
+                </div>
+              </div>
+              <ul class="flex flex-wrap gap-4">
+                <li>
+                  <a
+                    class="flex inline-flex border-[2px] rounded-md border-[#cccccc] py-1.5 px-3"
+                    href="header-shopify.html"
+                  >
+                    <svg
+                      class="w-5 mr-1 transform rotate-[260deg]"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 32 32"
+                      aria-hidden="true"
+                      focusable="false"
+                      role="presentation"
+                    >
+                      <path d="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z"></path>
+                    </svg>
+                    <span class="text-sm font-chivo text-[#505050]">Clothing themes</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="cursor-pointer" x-data="{id:'modal-example'}" @click="$dispatch('modal-overlay', {id}); ">
+      <svg
+        class="w-7 fill-black ml-2"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 50 50"
+        aria-hidden="true"
+        focusable="false"
+        role="presentation"
+      >
+        <path d="M 25 2.0078125 C 12.309296 2.0078125 2.0000002 12.317108 2 25.007812 C 2 37.698518 12.309295 48.007812 25 48.007812 C 37.690705 48.007812 48 37.698518 48 25.007812 C 48 12.317108 37.690704 2.0078125 25 2.0078125 z M 25 4.0078125 C 36.609824 4.0078125 46 13.397988 46 25.007812 C 46 30.740509 43.703999 35.925856 39.988281 39.712891 C 38.158498 38.369571 35.928049 37.69558 34.039062 37.023438 C 32.975192 36.644889 32.018651 36.269758 31.320312 35.851562 C 30.651504 35.451051 30.280089 35.039466 30.083984 34.566406 C 29.992134 33.419545 30.010738 32.496253 30.017578 31.40625 C 30.13873 31.285594 30.294155 31.200823 30.417969 31.054688 C 30.709957 30.710058 31.007253 30.29128 31.291016 29.820312 C 31.777604 29.012711 32.131673 28.024913 32.330078 27.023438 C 32.63305 26.869 32.956699 26.835578 33.203125 26.521484 C 33.658098 25.941577 33.965233 25.125482 34.101562 23.988281 C 34.222454 22.984232 33.898957 22.29366 33.482422 21.763672 C 33.930529 20.298851 34.48532 17.969341 34.296875 15.558594 C 34.193203 14.232288 33.859467 12.897267 33.056641 11.787109 C 32.290173 10.727229 31.045786 9.9653642 29.453125 9.6894531 C 28.441568 8.5409775 26.834704 8 24.914062 8 L 24.904297 8 L 24.896484 8 C 20.593741 8.078993 17.817552 9.8598398 16.628906 12.576172 C 15.498615 15.159149 15.741603 18.37477 16.552734 21.722656 C 16.116708 22.25268 15.775146 22.95643 15.898438 23.988281 C 16.035282 25.125098 16.34224 25.94153 16.796875 26.521484 C 17.043118 26.835604 17.366808 26.868911 17.669922 27.023438 C 17.868296 28.024134 18.222437 29.01059 18.708984 29.818359 C 18.992747 30.289465 19.289737 30.707821 19.582031 31.052734 C 19.705876 31.198874 19.861128 31.285522 19.982422 31.40625 C 19.988922 32.49568 20.007396 33.418614 19.916016 34.566406 C 19.720294 35.037723 19.34937 35.449526 18.681641 35.851562 C 17.984409 36.271364 17.029015 36.648577 15.966797 37.029297 C 14.079805 37.705631 11.85061 38.384459 10.015625 39.716797 C 6.2976298 35.929423 4 30.742497 4 25.007812 C 4.0000002 13.397989 13.390176 4.0078125 25 4.0078125 z M 24.921875 10.001953 C 26.766001 10.003853 27.92628 10.549863 28.244141 11.107422 L 28.488281 11.535156 L 28.974609 11.601562 C 30.230788 11.776108 30.932655 12.263579 31.435547 12.958984 C 31.938439 13.654389 32.217535 14.624895 32.302734 15.714844 C 32.473134 17.894741 31.849129 20.468905 31.453125 21.660156 L 31.201172 22.416016 L 31.882812 22.830078 C 31.813472 22.787858 32.203297 23.018609 32.115234 23.75 C 32.008564 24.639799 31.781184 25.093017 31.628906 25.287109 C 31.476629 25.481202 31.411442 25.45641 31.427734 25.455078 L 30.603516 25.523438 L 30.515625 26.345703 C 30.440195 27.052169 30.04285 28.015793 29.578125 28.787109 C 29.345762 29.172767 29.098543 29.516317 28.890625 29.761719 C 28.682707 30.00712 28.461282 30.159117 28.544922 30.115234 L 28.009766 30.394531 L 28.009766 31 C 28.009766 32.324321 27.955813 33.407291 28.095703 34.949219 L 28.107422 35.082031 L 28.154297 35.207031 C 28.547829 36.266071 29.369275 37.013258 30.292969 37.566406 C 31.216662 38.119555 32.276387 38.519377 33.369141 38.908203 C 35.170096 39.549023 37.047465 40.179657 38.478516 41.111328 C 34.832228 44.16545 30.135566 46.007812 25 46.007812 C 19.866422 46.007812 15.171083 44.167232 11.525391 41.115234 C 12.964568 40.188909 14.844735 39.556492 16.642578 38.912109 C 17.73461 38.520704 18.79156 38.119183 19.712891 37.564453 C 20.634221 37.009723 21.452728 36.262662 21.845703 35.207031 L 21.892578 35.082031 L 21.904297 34.949219 C 22.043042 33.408482 21.990234 32.325309 21.990234 31 L 21.990234 30.394531 L 21.455078 30.113281 C 21.538828 30.157091 21.317362 30.005196 21.109375 29.759766 C 20.901388 29.514336 20.654237 29.172879 20.421875 28.787109 C 19.957151 28.015571 19.559775 27.05118 19.484375 26.345703 L 19.396484 25.523438 L 18.572266 25.455078 C 18.587716 25.456378 18.523206 25.481158 18.371094 25.287109 C 18.218979 25.093064 17.991921 24.640183 17.884766 23.75 C 17.797356 23.01846 18.191557 22.784891 18.117188 22.830078 L 18.751953 22.445312 L 18.566406 21.724609 C 17.705952 18.412902 17.575833 15.399621 18.460938 13.376953 C 19.345167 11.356284 21.116417 10.074289 24.921875 10.001953 z"></path>
+      </svg>
+      <p class="text-13 font-medium">Account</p>
+    </div>
+    <div
+      style="display: none;"
+      class="fixed inset-0 lg:flex lg:flex-col h-full lg:items-end bg-[#0000004d] sm:justify-start z-[99]"
+      x-data="{modal: false}"
+      x-show="modal"
+      @modal-overlay.window="if ($event.detail.id === 'modal-example') modal = true; document.body.classList.add('overflow-y-hidden')"
+      x-transition:enter="transition ease-out duration-300"
+    >
+      <div
+        @click.away="modal = false; document.body.classList.remove('overflow-y-hidden') "
+        class="bg-white h-full w-[90%] ml-auto md:w-[500px] relative"
+      >
+        <!-- Close Button -->
+        <div class="w-full h-screen overflow-y-auto font-chivo">
+          <div
+            @click="modal = false;  document.body.classList.remove('overflow-y-hidden') "
+            class="cursor-pointer absolute top-4 end-4"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+              focusable="false"
+              role="presentation"
+            >
+              <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+            </svg>
+          </div>
+          <h2 class="text-2xl md:text-3xl  font-chivo text-center mt-5">Login</h2>
+          <div class="p-8">
+            <form action="#">
+              <div class="mb-8">
+                <label for="" class="text-14 text-[#202020]">Your Username *</label>
+                <input
+                  type="text"
+                  class="mt-2.5 border placeholder:text-sm placeholder:text-gray-300 border-[#c7c7c7] w-full py-2 px-4 focus:outline-none"
+                  placeholder="Your username"
+                >
+                <div class="mt-2">
+                  <label for="" class="text-14 text-[#202020]">Your Password *</label>
+                  <input
+                    type="password"
+                    class=" border mt-2.5 placeholder:text-sm placeholder:text-gray-300 border-[#c7c7c7] w-full py-2 px-4 focus:outline-none"
+                    placeholder="Your password"
+                  >
+                </div>
+              </div>
+              <a
+                class="text-sm  font-chivo uppercase py-2 text-center block px-4 bg-[#3de417] text-black hover:bg-[#54903e] w-full hover:text-white"
+                href="log-in.html"
+                >Log In
+              </a>
+              <a
+                class="text-sm  font-chivo uppercase py-2 text-center block px-4 bg-[#e5e5e5] text-black hover:bg-black w-full hover:text-white mt-3"
+                href="signup.html"
+                >Sign up
+              </a>
+              <a
+                class="text-sm block  hover:text-ellipsis-red-500 hover:underline mt-5 text-center"
+                href="register-account.html"
+                >Forgot password?</a
+              >
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="relative cursor-pointer" x-data="{id:'modal-2'}" @click="$dispatch('modal-overlay', {id})">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 80 80"
+        class="icon icon-cart w-6 fill-black"
+        aria-hidden="true"
+        focusable="false"
+        role="presentation"
+      >
+        <path d="M 19 9 C 17.90625 9 17 9.90625 17 11 L 17 14 C 15.90625 14 15 14.90625 15 16 L 15 63.902344 L 14 68.902344 L 14 71 L 66 71 L 66 68.902344 L 65 63.894531 L 65 16 C 65 14.90625 64.09375 14 63 14 L 63 11 C 63 9.90625 62.09375 9 61 9 Z M 19 11 L 61 11 L 61 14 L 19 14 Z M 17 16 L 63 16 L 63 64.09375 L 63.980469 69 L 16.019531 69 L 17 64.097656 Z M 30 21 C 28.894531 21 28 21.894531 28 23 C 28 23.714844 28.382813 24.375 29 24.730469 L 29 28 C 29 34.0625 33.9375 39 40 39 C 46.0625 39 51 34.0625 51 28 L 51 24.730469 C 51.617188 24.371094 52 23.714844 52 23 C 52 21.894531 51.105469 21 50 21 C 48.894531 21 48 21.894531 48 23 C 48 23.714844 48.382813 24.375 49 24.730469 L 49 28 C 49 32.984375 44.984375 37 40 37 C 35.015625 37 31 32.984375 31 28 L 31 24.730469 C 31.617188 24.371094 32 23.714844 32 23 C 32 21.894531 31.105469 21 30 21 Z M 20 63 C 19.449219 63 19 63.449219 19 64 C 19 64.550781 19.449219 65 20 65 C 20.550781 65 21 64.550781 21 64 C 21 63.449219 20.550781 63 20 63 Z M 24 63 C 23.449219 63 23 63.449219 23 64 C 23 64.550781 23.449219 65 24 65 C 24.550781 65 25 64.550781 25 64 C 25 63.449219 24.550781 63 24 63 Z M 28 63 C 27.449219 63 27 63.449219 27 64 C 27 64.550781 27.449219 65 28 65 C 28.550781 65 29 64.550781 29 64 C 29 63.449219 28.550781 63 28 63 Z M 32 63 C 31.449219 63 31 63.449219 31 64 C 31 64.550781 31.449219 65 32 65 C 32.550781 65 33 64.550781 33 64 C 33 63.449219 32.550781 63 32 63 Z M 36 63 C 35.449219 63 35 63.449219 35 64 C 35 64.550781 35.449219 65 36 65 C 36.550781 65 37 64.550781 37 64 C 37 63.449219 36.550781 63 36 63 Z M 40 63 C 39.449219 63 39 63.449219 39 64 C 39 64.550781 39.449219 65 40 65 C 40.550781 65 41 64.550781 41 64 C 41 63.449219 40.550781 63 40 63 Z M 44 63 C 43.449219 63 43 63.449219 43 64 C 43 64.550781 43.449219 65 44 65 C 44.550781 65 45 64.550781 45 64 C 45 63.449219 44.550781 63 44 63 Z M 48 63 C 47.449219 63 47 63.449219 47 64 C 47 64.550781 47.449219 65 48 65 C 48.550781 65 49 64.550781 49 64 C 49 63.449219 48.550781 63 48 63 Z M 52 63 C 51.449219 63 51 63.449219 51 64 C 51 64.550781 51.449219 65 52 65 C 52.550781 65 53 64.550781 53 64 C 53 63.449219 52.550781 63 52 63 Z M 56 63 C 55.449219 63 55 63.449219 55 64 C 55 64.550781 55.449219 65 56 65 C 56.550781 65 57 64.550781 57 64 C 57 63.449219 56.550781 63 56 63 Z M 60 63 C 59.449219 63 59 63.449219 59 64 C 59 64.550781 59.449219 65 60 65 C 60.550781 65 61 64.550781 61 64 C 61 63.449219 60.550781 63 60 63 Z"></path>
+      </svg>
+      <p class="text-13 font-medium mt-1">Cart</p>
+      <span class="w-5 h-5 rounded-full bg-black text-white text-13 absolute -top-1 -right-2 inline-block flex justify-center items-center"
+        >0</span
+      >
+    </div>
+    <div
+      style="display: none;"
+      class="fixed inset-0 lg:flex lg:flex-col font-chivo lg:items-end bg-[#0000004d] sm:justify-start z-10 h-screen"
+      x-data="{modal: false}"
+      x-show="modal"
+      @modal-overlay.window="if ($event.detail.id === 'modal-2') modal = true"
+      x-transition:enter="transition ease-out duration-300"
+    >
+      <div
+        @click.away="modal = false; document.body.classList.remove('overflow-y-hidden') "
+        class="bg-white h-full w-[90%] ml-auto md:w-[500px] px-5 py-8 md:p-8 relative"
+      >
+        <!-- Close Button -->
+        <div
+          @click="modal = false;  document.body.classList.remove('overflow-y-hidden') "
+          class="cursor-pointer absolute top-4 end-4"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5"
+            viewBox="0 0 48 48"
+            aria-hidden="true"
+            focusable="false"
+            role="presentation"
+          >
+            <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+          </svg>
+        </div>
+        <h2 class="text-2xl md:text-3xl  font-chivo text-center">My Cart (0)</h2>
+        <div class="mt-8">
+          <div class="border border-gray-100 flex relative">
+            <img src="assets/images/2.jpg" alt="" class="max-w-[110px]">
+            <div class="py-3 px-5 mt-2">
+              <h3 class="text-lg font-medium">(Product 9) Sample</h3>
+              <div class="flex justify-between items-center">
+                <h3 class="text-base font-bold">$39.00</h3>
+                <!-- Input Number -->
+                <div class="py-2 px-3 w-20 bg-white border border-gray-100">
+                  <div class="w-full flex justify-between items-center gap-x-5">
+                    <div class="grow">
+                      <input
+                        class="w-full p-0 bg-transparent border-0 text-black"
+                        type="text"
+                        value="3"
+                        data-hs-input-number-input=""
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- End Input Number -->
+              </div>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 absolute top-2.5 right-2"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+              focusable="false"
+              role="presentation"
+            >
+              <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+            </svg>
+          </div>
+          <div class="flex gap-6 mt-20">
+            <div class="text-sm font-bold flex-shrink-0">
+              <p>Sub Total</p>
+              <p>Shipping</p>
+            </div>
+            <div class="text-right">
+              <p class="text-sm font-bold">$195.00</p>
+              <p class="text-sm text-[#808080] italic">Taxes and shipping fee will be calculated at checkout</p>
+            </div>
+          </div>
+          <div class="flex items-center my-5   font-chivo">
+            <input
+              id="default-checkbox"
+              type="checkbox"
+              value=""
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+            >
+            <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >I agree with the <a href="#!" class="border-b border-black">Terms & conditions</a></label
+            >
+          </div>
+          <div class="space-y-2">
+            <a
+              class="cursor-default text-sm  font-chivo uppercase py-2 text-center block px-4 bg-[#3de417] text-black opacity-70 w-full "
+              href="log-in.html"
+              >checkout-$195.00
+            </a>
+            <a
+              class="text-sm  upperase py-2 text-center block px-4 bg-black text-white uppercase"
+              href="collection-all.html"
+              >View Cart
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- swiper slider -->
+</div>
+<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  {%- liquid
+    assign has_social_icons = true
+    if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+      assign has_social_icons = false
+    endif
+
+    if settings.brand_image == blank and settings.brand_headline == blank and settings.brand_description == blank
+      assign brand_empty = true
+    endif
+
+    if section.blocks.size == 1 and section.blocks[0].type == 'brand_information' and brand_empty and has_social_icons == false and section.settings.newsletter_enable == false and section.settings.enable_follow_on_shop == false
+      assign only_empty_brand = true
+    endif
+  -%}
+  {%- if section.blocks.size > 0
+    or section.settings.newsletter_enable
+    or section.settings.show_social
+    and has_social_icons == true
+    or section.settings.enable_follow_on_shop
+  -%}
+    {%- unless only_empty_brand -%}
+      <div class="footer__content-top page-width">
+        {%- if section.blocks.size > 0 -%}
+          {%- liquid
+            if section.blocks.size == 9
+              assign footer_grid_class = 'grid--3-col-tablet'
+            elsif section.blocks.size > 6
+              assign footer_grid_class = 'grid--4-col-desktop'
+            elsif section.blocks.size > 4
+              assign footer_grid_class = 'grid--3-col-tablet'
+            endif
+          -%}
+          <div
+            class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+            {% endif %}
+          >
+            {%- for block in section.blocks -%}
+              <div
+                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {%- if block.settings.heading != blank -%}
+                  <h2 class="footer-block__heading inline-richtext">{{- block.settings.heading -}}</h2>
+                {%- endif -%}
+
+                {%- case block.type -%}
+                  {%- when '@app' -%}
+                    {% render block %}
+                  {%- when 'text' -%}
+                    <div class="footer-block__details-content rte">
+                      {{ block.settings.subtext }}
+                    </div>
+                  {%- when 'link_list' -%}
+                    {%- if block.settings.menu != blank -%}
+                      <ul class="footer-block__details-content list-unstyled">
+                        {%- for link in block.settings.menu.links -%}
+                          <li>
+                            <a
+                              href="{{ link.url }}"
+                              class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
+                            >
+                              {{ link.title | escape }}
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- endif -%}
+                  {%- when 'brand_information' -%}
+                    <div class="footer-block__brand-info">
+                      {%- if settings.brand_image != blank -%}
+                        {%- assign brand_image_height = settings.brand_image_width
+                          | divided_by: settings.brand_image.aspect_ratio
+                        -%}
+                        <div
+                          class="footer-block__image-wrapper"
+                          style="max-width: min(100%, {{ settings.brand_image_width }}px);"
+                        >
+                          {{
+                            settings.brand_image
+                            | image_url: width: 1100
+                            | image_tag:
+                              loading: 'lazy',
+                              widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
+                              height: brand_image_height,
+                              width: settings.brand_image_width
+                          }}
+                        </div>
+                      {%- endif -%}
+                      {%- if settings.brand_headline != blank -%}
+                        <h2 class="footer-block__heading rte">{{ settings.brand_headline }}</h2>
+                      {%- endif -%}
+                      {%- if settings.brand_description != blank -%}
+                        <div class="rte">{{ settings.brand_description }}</div>
+                      {%- endif -%}
+                      {%- if block.settings.show_social and has_social_icons -%}
+                        {%- render 'social-icons', class: 'footer__list-social' -%}
+                      {%- endif -%}
+                    </div>
+                  {%- when 'image' -%}
+                    <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
+                      {%- if block.settings.image != blank -%}
+                        {%- assign image_size_2x = block.settings.image_width | times: 2 | at_most: 5760 -%}
+                        <div
+                          class="footer-block__image-wrapper"
+                          style="max-width: min(100%, {{ block.settings.image_width }}px);"
+                        >
+                          <img
+                            srcset="{{ block.settings.image | image_url: width: block.settings.image_width }}, {{ block.settings.image | image_url: width: image_size_2x }} 2x"
+                            src="{{ block.settings.image | image_url: width: 760 }}"
+                            alt="{{ block.settings.image.alt | escape }}"
+                            loading="lazy"
+                            width="{{ block.settings.image.width }}"
+                            height="{{ block.settings.image.height }}"
+                          >
+                        </div>
+                      {%- else -%}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                      {%- endif -%}
+                    </div>
+                {%- endcase -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        <div
+          class="footer-block--newsletter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+          {% endif %}
+        >
+          {%- if section.settings.newsletter_enable -%}
+            <div class="footer-block__newsletter">
+              {%- if section.settings.newsletter_heading != blank -%}
+                <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
+              {%- endif -%}
+              {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="newsletter-form__field-wrapper">
+                  <div class="field">
+                    <input
+                      id="NewsletterForm--{{ section.id }}"
+                      type="email"
+                      name="contact[email]"
+                      class="field__input"
+                      value="{{ form.email }}"
+                      aria-required="true"
+                      autocorrect="off"
+                      autocapitalize="off"
+                      autocomplete="email"
+                      {% if form.errors %}
+                        autofocus
+                        aria-invalid="true"
+                        aria-describedby="ContactFooter-error"
+                      {% elsif form.posted_successfully? %}
+                        aria-describedby="ContactFooter-success"
+                      {% endif %}
+                      placeholder="{{ 'newsletter.label' | t }}"
+                      required
+                    >
+                    <label class="field__label" for="NewsletterForm--{{ section.id }}">
+                      {{ 'newsletter.label' | t }}
+                    </label>
+                    <button
+                      type="submit"
+                      class="newsletter-form__button field__button"
+                      name="commit"
+                      id="Subscribe"
+                      aria-label="{{ 'newsletter.button_label' | t }}"
+                    >
+                      <span class="svg-wrapper">
+                        {{- 'icon-arrow.svg' | inline_asset_content -}}
+                      </span>
+                    </button>
+                  </div>
+                  {%- if form.errors -%}
+                    <small class="newsletter-form__message form__message" id="ContactFooter-error">
+                      <span class="svg-wrapper">
+                        {{- 'icon-error.svg' | inline_asset_content -}}
+                      </span>
+                      {{- form.errors.translated_fields.email | capitalize }}
+                      {{ form.errors.messages.email -}}
+                    </small>
+                  {%- endif -%}
+                </div>
+                {%- if form.posted_successfully? -%}
+                  <h3
+                    class="newsletter-form__message newsletter-form__message--success form__message"
+                    id="ContactFooter-success"
+                    tabindex="-1"
+                    autofocus
+                  >
+                    <span class="svg-wrapper">
+                      {{- 'icon-success.svg' | inline_asset_content -}}
+                    </span>
+                    {{- 'newsletter.success' | t }}
+                  </h3>
+                {%- endif -%}
+              {%- endform -%}
+            </div>
+          {%- endif -%}
+
+          {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
+            <div class="footer__follow-on-shop">
+              {{ shop | login_button: action: 'follow' }}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.show_social and has_social_icons -%}
+            {%- render 'social-icons', class: 'footer__list-social' -%}
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endunless -%}
+  {%- endif -%}
+
+  <div
+    class="footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    {% if settings.animations_reveal_on_scroll %}
+      data-cascade
+    {% endif %}
+  >
+    <div class="footer__content-bottom-wrapper page-width">
+      <div class="footer__column footer__localization isolate">
+        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+          <localization-form>
+            {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="caption-large text-body" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                {%- render 'country-localization', localPosition: 'FooterCountry' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {%- endif -%}
+
+        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+          <localization-form>
+            {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="caption-large text-body" id="FooterLanguageLabel">
+                  {{ 'localization.language_label' | t }}
+                </h2>
+                {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {%- endif -%}
+      </div>
+      <div class="footer__column footer__column--info">
+        {%- if section.settings.payment_enable -%}
+          <div class="footer__payment">
+            <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+            <ul class="list list-payment" role="list">
+              {%- for type in shop.enabled_payment_types -%}
+                <li class="list-payment__item">
+                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
+      <div class="footer__copyright caption">
+        <small class="copyright__content"
+          >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
+        </small>
+        <small class="copyright__content">{{ powered_by_link }}</small>
+        {%- if section.settings.show_policy -%}
+          <ul class="policies list-unstyled">
+            {%- for policy in shop.policies -%}
+              {%- if policy != blank -%}
+                <li>
+                  <small class="copyright__content"
+                    ><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small
+                  >
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "link_list",
+      "name": "t:sections.footer.blocks.link_list.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.footer.blocks.link_list.settings.heading.default",
+          "label": "t:sections.footer.blocks.link_list.settings.heading.label"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+          "info": "t:sections.footer.blocks.link_list.settings.menu.info"
+        }
+      ]
+    },
+    {
+      "type": "brand_information",
+      "name": "t:sections.footer.blocks.brand_information.name",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.footer.blocks.brand_information.settings.paragraph.content"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.blocks.brand_information.settings.header__1.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "default": true,
+          "label": "t:sections.footer.blocks.brand_information.settings.show_social.label",
+          "info": "t:sections.footer.blocks.brand_information.settings.show_social.info"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.footer.blocks.text.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.footer.blocks.text.settings.heading.default",
+          "label": "t:sections.footer.blocks.text.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "default": "t:sections.footer.blocks.text.settings.subtext.default",
+          "label": "t:sections.footer.blocks.text.settings.subtext.label"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 550,
+          "step": 5,
+          "unit": "px",
+          "label": "Image width",
+          "default": 100
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Image alignment on large screen",
+          "options": [
+            {
+              "value": "",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__1.content",
+      "info": "t:sections.footer.settings.header__1.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.newsletter_enable.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "newsletter_heading",
+      "default": "t:sections.footer.settings.newsletter_heading.default",
+      "label": "t:sections.footer.settings.newsletter_heading.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__9.content",
+      "info": "t:sections.footer.settings.header__9.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_follow_on_shop",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_follow_on_shop.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__2.content",
+      "info": "t:sections.footer.settings.header__2.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": true,
+      "label": "t:sections.footer.settings.show_social.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__3.content",
+      "info": "t:sections.footer.settings.header__4.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_country_selector.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__5.content",
+      "info": "t:sections.footer.settings.header__6.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_language_selector.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__7.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.payment_enable.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__8.content",
+      "info": "t:sections.footer.settings.header__8.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policy",
+      "default": true,
+      "label": "t:sections.footer.settings.show_policy.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.footer.settings.margin_top.label",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "link_list"
+      },
+      {
+        "type": "text"
+      }
+    ]
+  }
+}
+{% endschema %}

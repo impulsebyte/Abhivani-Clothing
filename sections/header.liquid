@@ -1,0 +1,1398 @@
+<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
+
+{%- if settings.predictive_search_enabled -%}
+  <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- endif -%}
+
+{%- if section.settings.menu_type_desktop == 'mega' -%}
+  <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- endif -%}
+
+
+<style>
+  header-drawer {
+    justify-self: start;
+    margin-left: -1.2rem;
+  }
+
+  {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
+    .scrolled-past-header .header__heading-logo-wrapper {
+      width: 75%;
+    }
+  {%- endif -%}
+
+  {%- if section.settings.menu_type_desktop != "drawer" -%}
+    @media screen and (min-width: 990px) {
+      header-drawer {
+        display: none;
+      }
+    }
+  {%- endif -%}
+
+  .menu-drawer-container {
+    display: flex;
+  }
+
+  .list-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .list-menu--inline {
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+
+  summary.list-menu__item {
+    padding-right: 2.7rem;
+  }
+
+  .list-menu__item {
+    display: flex;
+    align-items: center;
+    line-height: calc(1 + 0.3 / var(--font-body-scale));
+  }
+
+  .list-menu__item--link {
+    text-decoration: none;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    line-height: calc(1 + 0.8 / var(--font-body-scale));
+  }
+
+  @media screen and (min-width: 750px) {
+    .list-menu__item--link {
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
+    }
+  }
+</style>
+
+{%- style -%}
+  .header {
+    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
+  }
+
+  .section-header {
+    position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
+    margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-header {
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .header {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  for block in section.blocks
+    if block.type == '@app'
+      assign has_app_block = true
+    endif
+  endfor
+-%}
+
+
+  <style>
+    .logo-header-bg {
+        background: linear-gradient(261deg, #920E2F 5%, #920E2F 97%);
+    }
+    .bg-light-theme {
+	background: #CE4F6F;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+    @media screen and (max-width: 991px) {
+        .desktop-show {
+            display: none;
+        }
+        .banner-categories .flex.flex-col {
+    flex: 1 0 21% !important;
+}
+.banner-categories {
+    top: 0 !important;
+    margin-top: 28px;
+}
+.banner-categories .flex.px-8 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
+
+
+
+    }
+    @media screen and (min-width: 991px) {
+        .mobile-show {
+            display: none;
+        }
+    }
+    </style>
+
+<!-- <div id="loader-wrapper" class="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-white z-[9999] overflow-hidden">
+    <div class="loader relative inline-block w-16 h-16">
+        <span class="loader-span absolute inline-block w-16 h-16 rounded-full bg-[#3de417]"></span>
+        <span class="loader-span absolute inline-block w-16 h-16 rounded-full bg-[#3de417]"></span>
+    </div>
+</div> -->
+<!-- header -->
+<div class="page-width block bg-light-theme px-4 xl:px-9 2xl:px-[70px] mx-auto py-1">
+    <div class="text-13 flex justify-between items-center text-white py-1.5 lg:py-0">
+        <p class="text-xs font-bold text-white text-center mx-auto">EXPRESS DELIVERY AND EXTRA 10% OFF ON PRE-PAID</p>
+    </div>
+</div>
+<!-- Header Strip Mob/Desk -->
+<nav class="page-width logo-header-bg px-4 xl:px-9 2xl:px-[70px] mx-auto relative bg-white flex justify-between py-1">
+    <!-- Mobile header -->
+    <div class="xl:hidden justify-between items-center flex gap-3 py-2 w-full ">
+        <div class="flex gap-4">
+            <a href="a.html" class="menubar cursor-pointer" id="toogle-menu">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" class="fill-white w-7 md:w-8">
+                    <path d="M 0 9 L 0 11 L 50 11 L 50 9 Z M 0 24 L 0 26 L 50 26 L 50 24 Z M 0 39 L 0 41 L 50 41 L 50 39 Z"></path>
+                </svg>
+            </a>
+            <!-- search res -->
+            <div x-data="{ isOpen: false }">
+                <a href="a.html" x-data="{id:'modal-search'}" @click="$dispatch('modal-overlay', {id})">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" class="fill-white modal__toggle-open icon icon-search" aria-hidden="true" focusable="false" role="presentation">
+                        <path d="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div>
+          <a href="{{ routes.root_url }}" class="flex justify-center header__heading-link link link--text focus-inset">
+            {%- if settings.logo != blank -%}
+              <div class="header__heading-logo-wrapper">
+                {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+                {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+                {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
+                {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+                {{ settings.logo | image_url: width: 600 | image_tag:
+                  class: 'max-w-24 sm:max-w-32 header__heading-logo motion-reduce',
+                  widths: widths,
+                  height: logo_height,
+                  width: settings.logo_width,
+                  alt: logo_alt,
+                  sizes: sizes,
+                  preload: true
+                }}
+              </div>
+            {%- else -%}
+              <span class="h2">{{ shop.name }}</span>
+            {%- endif -%}
+          </a>
+            
+        </div>
+        <div class="flex gap-4">
+            <button type="button" x-data="{id:'modal-example'}" @click="$dispatch('modal-overlay', {id})">
+                <div class="flex gap-2 group text-white transition-all duration-500">
+                    <svg class="w-7 h-7 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" aria-hidden="true" focusable="false" role="presentation">
+                        <path d="M 25 2.0078125 C 12.309296 2.0078125 2.0000002 12.317108 2 25.007812 C 2 37.698518 12.309295 48.007812 25 48.007812 C 37.690705 48.007812 48 37.698518 48 25.007812 C 48 12.317108 37.690704 2.0078125 25 2.0078125 z M 25 4.0078125 C 36.609824 4.0078125 46 13.397988 46 25.007812 C 46 30.740509 43.703999 35.925856 39.988281 39.712891 C 38.158498 38.369571 35.928049 37.69558 34.039062 37.023438 C 32.975192 36.644889 32.018651 36.269758 31.320312 35.851562 C 30.651504 35.451051 30.280089 35.039466 30.083984 34.566406 C 29.992134 33.419545 30.010738 32.496253 30.017578 31.40625 C 30.13873 31.285594 30.294155 31.200823 30.417969 31.054688 C 30.709957 30.710058 31.007253 30.29128 31.291016 29.820312 C 31.777604 29.012711 32.131673 28.024913 32.330078 27.023438 C 32.63305 26.869 32.956699 26.835578 33.203125 26.521484 C 33.658098 25.941577 33.965233 25.125482 34.101562 23.988281 C 34.222454 22.984232 33.898957 22.29366 33.482422 21.763672 C 33.930529 20.298851 34.48532 17.969341 34.296875 15.558594 C 34.193203 14.232288 33.859467 12.897267 33.056641 11.787109 C 32.290173 10.727229 31.045786 9.9653642 29.453125 9.6894531 C 28.441568 8.5409775 26.834704 8 24.914062 8 L 24.904297 8 L 24.896484 8 C 20.593741 8.078993 17.817552 9.8598398 16.628906 12.576172 C 15.498615 15.159149 15.741603 18.37477 16.552734 21.722656 C 16.116708 22.25268 15.775146 22.95643 15.898438 23.988281 C 16.035282 25.125098 16.34224 25.94153 16.796875 26.521484 C 17.043118 26.835604 17.366808 26.868911 17.669922 27.023438 C 17.868296 28.024134 18.222437 29.01059 18.708984 29.818359 C 18.992747 30.289465 19.289737 30.707821 19.582031 31.052734 C 19.705876 31.198874 19.861128 31.285522 19.982422 31.40625 C 19.988922 32.49568 20.007396 33.418614 19.916016 34.566406 C 19.720294 35.037723 19.34937 35.449526 18.681641 35.851562 C 17.984409 36.271364 17.029015 36.648577 15.966797 37.029297 C 14.079805 37.705631 11.85061 38.384459 10.015625 39.716797 C 6.2976298 35.929423 4 30.742497 4 25.007812 C 4.0000002 13.397989 13.390176 4.0078125 25 4.0078125 z M 24.921875 10.001953 C 26.766001 10.003853 27.92628 10.549863 28.244141 11.107422 L 28.488281 11.535156 L 28.974609 11.601562 C 30.230788 11.776108 30.932655 12.263579 31.435547 12.958984 C 31.938439 13.654389 32.217535 14.624895 32.302734 15.714844 C 32.473134 17.894741 31.849129 20.468905 31.453125 21.660156 L 31.201172 22.416016 L 31.882812 22.830078 C 31.813472 22.787858 32.203297 23.018609 32.115234 23.75 C 32.008564 24.639799 31.781184 25.093017 31.628906 25.287109 C 31.476629 25.481202 31.411442 25.45641 31.427734 25.455078 L 30.603516 25.523438 L 30.515625 26.345703 C 30.440195 27.052169 30.04285 28.015793 29.578125 28.787109 C 29.345762 29.172767 29.098543 29.516317 28.890625 29.761719 C 28.682707 30.00712 28.461282 30.159117 28.544922 30.115234 L 28.009766 30.394531 L 28.009766 31 C 28.009766 32.324321 27.955813 33.407291 28.095703 34.949219 L 28.107422 35.082031 L 28.154297 35.207031 C 28.547829 36.266071 29.369275 37.013258 30.292969 37.566406 C 31.216662 38.119555 32.276387 38.519377 33.369141 38.908203 C 35.170096 39.549023 37.047465 40.179657 38.478516 41.111328 C 34.832228 44.16545 30.135566 46.007812 25 46.007812 C 19.866422 46.007812 15.171083 44.167232 11.525391 41.115234 C 12.964568 40.188909 14.844735 39.556492 16.642578 38.912109 C 17.73461 38.520704 18.79156 38.119183 19.712891 37.564453 C 20.634221 37.009723 21.452728 36.262662 21.845703 35.207031 L 21.892578 35.082031 L 21.904297 34.949219 C 22.043042 33.408482 21.990234 32.325309 21.990234 31 L 21.990234 30.394531 L 21.455078 30.113281 C 21.538828 30.157091 21.317362 30.005196 21.109375 29.759766 C 20.901388 29.514336 20.654237 29.172879 20.421875 28.787109 C 19.957151 28.015571 19.559775 27.05118 19.484375 26.345703 L 19.396484 25.523438 L 18.572266 25.455078 C 18.587716 25.456378 18.523206 25.481158 18.371094 25.287109 C 18.218979 25.093064 17.991921 24.640183 17.884766 23.75 C 17.797356 23.01846 18.191557 22.784891 18.117188 22.830078 L 18.751953 22.445312 L 18.566406 21.724609 C 17.705952 18.412902 17.575833 15.399621 18.460938 13.376953 C 19.345167 11.356284 21.116417 10.074289 24.921875 10.001953 z"></path>
+                    </svg>
+                </div>
+            </button>
+            <div class="fixed inset-0 lg:flex lg:flex-col h-full lg:items-end bg-[#0000004d] sm:justify-start z-[99]" x-data="{modal: false}" x-show="modal" @modal-overlay.window="if ($event.detail.id === 'modal-example') modal = true; document.body.classList.add('overflow-y-hidden')" x-transition:enter="transition ease-out duration-300" style="display: none;">
+                <div @click.away="modal = false; document.body.classList.remove('overflow-y-hidden') " class="bg-white h-full w-[90%] ml-auto md:w-[500px] relative">
+                    <!-- Close Button -->
+                    <div class="w-full h-screen overflow-y-auto font-chivo">
+                        <div @click="modal = false;  document.body.classList.remove('overflow-y-hidden') " class="cursor-pointer absolute top-4 end-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 48 48" aria-hidden="true" focusable="false" role="presentation">
+                                <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl  font-chivo text-center mt-5">Login</h2>
+                        <div class="p-8">
+                            <form action="#">
+                                <div class="mb-8">
+                                    <label for="" class="text-14 text-[#202020]">Your Username *</label>
+                                    <input type="text" class="mt-2.5 border placeholder:text-sm placeholder:text-gray-300 border-[#c7c7c7] w-full py-2 px-4 focus:outline-none" placeholder="Your username">
+                                    <div class="mt-2">
+                                        <label for="" class="text-14 text-[#202020]">Your Password *</label>
+                                        <input type="password" class=" border mt-2.5 placeholder:text-sm placeholder:text-gray-300 border-[#c7c7c7] w-full py-2 px-4 focus:outline-none" placeholder="Your password">
+                                    </div>
+                                </div>
+                                <a class="text-sm  font-chivo uppercase py-2 text-center block px-4 bg-[#3de417] text-black hover:bg-[#54903e] w-full hover:text-white" href="log-in.html">Log In
+                                </a>
+                                <a class="text-sm  font-chivo uppercase py-2 text-center block px-4 bg-[#e5e5e5] text-black hover:bg-black w-full hover:text-white mt-3" href="signup.html">Sign up
+                                </a>
+                                <a class="text-sm block  hover:text-ellipsis-red-500 hover:underline mt-5 text-center" href="register-account.html">Forgot password?</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <button type="button" x-data="{id:'modal-2'}" @click="$dispatch('modal-overlay', {id})">
+                <span class="flex gap-2 group items-center text-white transition-all duration-500 relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" class="icon icon-cart w-7 h-7 fill-white" aria-hidden="true" focusable="false" role="presentation">
+                        <path d="M 19 9 C 17.90625 9 17 9.90625 17 11 L 17 14 C 15.90625 14 15 14.90625 15 16 L 15 63.902344 L 14 68.902344 L 14 71 L 66 71 L 66 68.902344 L 65 63.894531 L 65 16 C 65 14.90625 64.09375 14 63 14 L 63 11 C 63 9.90625 62.09375 9 61 9 Z M 19 11 L 61 11 L 61 14 L 19 14 Z M 17 16 L 63 16 L 63 64.09375 L 63.980469 69 L 16.019531 69 L 17 64.097656 Z M 30 21 C 28.894531 21 28 21.894531 28 23 C 28 23.714844 28.382813 24.375 29 24.730469 L 29 28 C 29 34.0625 33.9375 39 40 39 C 46.0625 39 51 34.0625 51 28 L 51 24.730469 C 51.617188 24.371094 52 23.714844 52 23 C 52 21.894531 51.105469 21 50 21 C 48.894531 21 48 21.894531 48 23 C 48 23.714844 48.382813 24.375 49 24.730469 L 49 28 C 49 32.984375 44.984375 37 40 37 C 35.015625 37 31 32.984375 31 28 L 31 24.730469 C 31.617188 24.371094 32 23.714844 32 23 C 32 21.894531 31.105469 21 30 21 Z M 20 63 C 19.449219 63 19 63.449219 19 64 C 19 64.550781 19.449219 65 20 65 C 20.550781 65 21 64.550781 21 64 C 21 63.449219 20.550781 63 20 63 Z M 24 63 C 23.449219 63 23 63.449219 23 64 C 23 64.550781 23.449219 65 24 65 C 24.550781 65 25 64.550781 25 64 C 25 63.449219 24.550781 63 24 63 Z M 28 63 C 27.449219 63 27 63.449219 27 64 C 27 64.550781 27.449219 65 28 65 C 28.550781 65 29 64.550781 29 64 C 29 63.449219 28.550781 63 28 63 Z M 32 63 C 31.449219 63 31 63.449219 31 64 C 31 64.550781 31.449219 65 32 65 C 32.550781 65 33 64.550781 33 64 C 33 63.449219 32.550781 63 32 63 Z M 36 63 C 35.449219 63 35 63.449219 35 64 C 35 64.550781 35.449219 65 36 65 C 36.550781 65 37 64.550781 37 64 C 37 63.449219 36.550781 63 36 63 Z M 40 63 C 39.449219 63 39 63.449219 39 64 C 39 64.550781 39.449219 65 40 65 C 40.550781 65 41 64.550781 41 64 C 41 63.449219 40.550781 63 40 63 Z M 44 63 C 43.449219 63 43 63.449219 43 64 C 43 64.550781 43.449219 65 44 65 C 44.550781 65 45 64.550781 45 64 C 45 63.449219 44.550781 63 44 63 Z M 48 63 C 47.449219 63 47 63.449219 47 64 C 47 64.550781 47.449219 65 48 65 C 48.550781 65 49 64.550781 49 64 C 49 63.449219 48.550781 63 48 63 Z M 52 63 C 51.449219 63 51 63.449219 51 64 C 51 64.550781 51.449219 65 52 65 C 52.550781 65 53 64.550781 53 64 C 53 63.449219 52.550781 63 52 63 Z M 56 63 C 55.449219 63 55 63.449219 55 64 C 55 64.550781 55.449219 65 56 65 C 56.550781 65 57 64.550781 57 64 C 57 63.449219 56.550781 63 56 63 Z M 60 63 C 59.449219 63 59 63.449219 59 64 C 59 64.550781 59.449219 65 60 65 C 60.550781 65 61 64.550781 61 64 C 61 63.449219 60.550781 63 60 63 Z"></path>
+                    </svg>
+                    <span class="absolute -top-1 -right-1 w-5 h-5 text-sm font-medium flex justify-center items-center text-white bg-black rounded-full">0</span>
+                </span>
+            </button>
+            <div class="fixed inset-0 lg:flex lg:flex-col font-chivo lg:items-end bg-[#0000004d] sm:justify-start z-10 h-screen" x-data="{modal: false}" x-show="modal" @modal-overlay.window="if ($event.detail.id === 'modal-2') modal = true" x-transition:enter="transition ease-out duration-300" style="display: none;">
+                <div @click.away="modal = false; document.body.classList.remove('overflow-y-hidden') " class="bg-white h-full w-[90%] ml-auto md:w-[500px] px-5 py-8 md:p-8 relative">
+                    <!-- Close Button -->
+                    <div @click="modal = false;  document.body.classList.remove('overflow-y-hidden') " class="cursor-pointer absolute top-4 end-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 48 48" aria-hidden="true" focusable="false" role="presentation">
+                            <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl  font-chivo text-center">My Cart (0)</h2>
+                    <div class="mt-8">
+                        <div class="border border-gray-100 flex relative">
+                            <img src="assets/images/img-106.jpg" alt="" class="max-w-[110px]">
+                            <div class="py-3 px-5 mt-2">
+                                <h3 class="text-lg font-medium">(Product 9) Sample - Lingerie and Sleepwear For Sale</h3>
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-base font-bold">$39.00</h3>
+                                    <!-- Input Number -->
+                                    <div class="py-2 px-3 w-20 bg-white border border-gray-100">
+                                        <div class="w-full flex justify-between items-center gap-x-5">
+                                            <div class="grow">
+                                                <input class="w-full p-0 bg-transparent border-0 text-black" type="text" value="3" data-hs-input-number-input="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Input Number -->
+                                </div>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 absolute top-2.5 right-2" viewBox="0 0 48 48" aria-hidden="true" focusable="false" role="presentation">
+                                <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex gap-6 mt-20">
+                            <div class="text-sm font-bold flex-shrink-0">
+                                <p>Sub Total</p>
+                                <p>Shipping</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-bold">$195.00</p>
+                                <p class="text-sm text-[#808080] italic">Taxes and shipping fee will be calculated at checkout</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center my-5   font-chivo">
+                            <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                            <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="a.html" class="border-b border-black">Terms &amp; conditions</a></label>
+                        </div>
+                        <div class="space-y-2">
+                            <a class="cursor-default text-sm  font-chivo uppercase py-2 text-center block px-4 bg-[#3de417] text-black opacity-70 w-full " href="log-in.html">checkout-$195.00
+                            </a>
+                            <a class="text-sm  upperase py-2 text-center block px-4 bg-black text-white uppercase" href="collection-all.html">View Cart
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- desktop header -->
+    <div class="hidden xl:flex items-center justify-between w-full">
+        <a href="{{ routes.root_url }}" class="flex justify-center header__heading-link link link--text focus-inset">
+            {%- if settings.logo != blank -%}
+              <div class="header__heading-logo-wrapper">
+                {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+                {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+                {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
+                {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+                {{ settings.logo | image_url: width: 600 | image_tag:
+                  class: ' header__heading-logo motion-reduce',
+                  widths: widths,
+                  height: logo_height,
+                  width: settings.logo_width,
+                  alt: logo_alt,
+                  sizes: sizes,
+                  preload: true
+                }}
+              </div>
+            {%- else -%}
+              <span class="h2">{{ shop.name }}</span>
+            {%- endif -%}
+          </a>
+      
+        <ul class="flex gap-10 font-chivo">
+            <!-- home -->
+            <li class="dropdown inline-block">
+                <a href="/"  :class="{ 'underline decoration-2 underline-offset-4': isOpen }" class="inline-flex items-center text-base  text-white rounded py-4 hover:underline hover:decoration-2 hover:underline-offset-4 transition-all duration-500">Home</a>
+                
+            </li>
+            <!-- shop -->
+            <li x-data="{ isOpen: false }" class="dropdown inline-block">
+                <a href="a.html" @click="isOpen = !isOpen" :class="{ 'underline decoration-2 underline-offset-4': isOpen }" class="inline-flex items-center text-base  text-white rounded py-4 hover:underline hover:decoration-2 hover:underline-offset-4 transition-all duration-500">Shop</a>
+                <div x-show="isOpen" @click.away="isOpen = false" class="px-4 xl:px-9 2xl:px-16 dropdown-menu w-full inset-x-0 top-16 absolute text-gray-700 bg-white py-8 shadow-xl z-30" style="display: none;">
+                    <div class="grid grid-cols-6 gap-6">
+                        <div>
+                            <h5 class="text-sm font-bold text-black hover:underline inline">Collection Lists</h5>
+                            <ul class="mt-2.5">
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="collection-list-01.html">Collection List 01</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="collection-list-02.html">Collection List 02</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="collection-list-03.html">Collection List 03</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="collection-list-04.html">Collection List 04</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="collection-list-05.html">Collection List 05</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="collection-list-01.html">More coming soon</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-bold text-black hover:underline inline">Collection Details</h5>
+                            <ul class="mt-2.5">
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="collection-details-01.html">Collection Details 01</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="collection-details-02.html">Collection Details 02</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="collection-details-03.html">Collection Details 03</a></li>
+                                <!-- <li><a href="collection-details-04.html" class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline">Collection Details 04</a></li>
+                                    <li><a href="collection-details-05.html" class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline">Collection Details 05</a></li> -->
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="collection-details-01.html">More coming soon</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-bold text-black hover:underline inline">Category Pages</h5>
+                            <ul class="mt-2.5">
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="shop-01.html">Horizontal Sidebar</a></li>
+                                <li><a href="collection-all-2.html" class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline">Vertical Sidebar</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="shop-01.html">More coming soon</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-bold text-black hover:underline inline">Main Features</h5>
+                            <ul class="mt-2.5">
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="shop-01.html">Dynamic Filtering</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="collection-all-3.html">Tags Filtering</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="shop-all.html">Infinite Scrolling</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="shop-01.html">Pagination</a></li>
+                            </ul>
+                        </div>
+                        <!-- grid 4 -->
+                        <div>
+                            <h5 class="text-sm font-bold text-black hover:underline inline">Main Features</h5>
+                            <ul class="mt-2.5">
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="shop-01.html">Sub Categories</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="shop-01.html">Grid View</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="shop-01.html">List View</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="shop-01.html">Product Compare</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="shop-01.html">Product Per Page</a></li>
+                            </ul>
+                        </div>
+                        <!-- grid 4 -->
+                        <div>
+                            <h5 class="text-sm font-bold text-black hover:underline inline">Main Features</h5>
+                            <ul class="mt-2.5">
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="urban-fashion.html">Multiple Crrencies</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="urban-fashion.html">Multiple Languages</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="furniture.html">Products Video On Hover</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="urban-fashion.html">Shipping Threshold</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="bikini.html">Video Slider</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="my-7 text-xl uppercase font-bold relative before:block before:absolute before:top-[50%] before:left-0 before:w-full before:h-0.5 before:bg-zinc-200">
+                            <span class="relative z-10 pe-5 bg-white">A-Z Brands</span>
+                        </h3>
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <ul class="flex items-center gap-10">
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">0-9</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">A</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">B</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">C</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">D</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">E</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">F</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">G</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">H</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">I</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">J</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">K</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">L</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">M</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">N</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">O</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">P</a></li>
+                                <li class="font-medium transition-all duration-500 text-zinc-400">Q</li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">R</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">S</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">T</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">U</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">V</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">W</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">X</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">Y</a></li>
+                                <li><a class="font-medium transition-all duration-500 text-zinc-400" href="brands.html">Z</a></li>
+                            </ul>
+                            <div>
+                                <a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="brands.html">See all brands</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- product -->
+            <li x-data="{ isOpen: false }" class="dropdown inline-block">
+                <a href="/collections/frontpage" :class="{ 'underline decoration-2 underline-offset-4': isOpen }" class="inline-flex items-center text-base  text-white rounded py-4 hover:underline hover:decoration-2 hover:underline-offset-4 transition-all duration-500">Products</a>
+                
+            </li>
+            <!-- pages -->
+            <li x-data="{ isOpen: false }" class="dropdown inline-block relative">
+                <a href="a.html" @click="isOpen = !isOpen" :class="{ 'underline decoration-2 underline-offset-4': isOpen }" class="inline-flex items-center text-base  text-white rounded py-4 hover:underline hover:decoration-2 hover:underline-offset-4 transition-all duration-500">Pages</a>
+                <div x-show="isOpen" @click.away="isOpen = false" class="dropdown-menu inset-x-0 top-[55px] absolute w-48 text-gray-700 p-4 bg-white pt-1 shadow-xl z-20" style="display: none;">
+                    <ul>
+                        <li class="py-2 border-b"><a class="text-base hover:text-gray-600 text-black" href="store-location.html">Store Locations</a></li>
+                        <li class="py-2 border-b">
+                            <div x-data="{ isOpen: false }" class="dropdown block relative w-full">
+                                <div class="flex items-center justify-between cursor-pointer w-full" @click="isOpen = !isOpen">
+                                    <a href="a.html" class="text-base hover:text-gray-600 text-black">Lookbook</a>
+                                    <span>
+                                        <i class="ri-arrow-right-s-line"></i>
+                                    </span>
+                                </div>
+                                <div x-show="isOpen" @click.away="isOpen = false" class="dropdown-menu  inset-x-36 absolute inset-y-0 z-20" style="display: none;">
+                                    <div class="py-2 px-4 w-52 shadow-xl bg-white">
+                                        <ul>
+                                            <li class="py-2 border-b">
+                                                <a class="text-base hover:text-gray-600 text-black" href="lookbook-1.html">Lookbook 01 </a>
+                                            </li>
+                                            <li class="py-2 border-b">
+                                                <a class="text-base hover:text-gray-600 text-black" href="lookbook-2.html">Lookbook 02 </a>
+                                            </li>
+                                            <li class="py-2">
+                                                <a class="text-base hover:text-gray-600 text-black" href="lookbook-3.html">Lookbook 03</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!-- New in -->
+            <li x-data="{ isOpen: false }" class="dropdown inline-block">
+                <a href="a.html" @click="isOpen = !isOpen" :class="{ 'underline decoration-2 underline-offset-4': isOpen }" class="inline-flex items-center text-base  text-white rounded py-4 hover:underline hover:decoration-2 hover:underline-offset-4 transition-all duration-500">New In</a>
+                <div x-show="isOpen" @click.away="isOpen = false" class="px-4 xl:px-9 2xl:px-16 dropdown-menu w-full inset-x-0 top-16 absolute text-gray-700 bg-white py-8 shadow-xl z-30" style="display: none;">
+                    <div class="grid grid-cols-6 gap-6">
+                        <!-- grid 1 -->
+                        <div>
+                            <h5 class="text-sm font-bold text-black hover:underline inline">Offers</h5>
+                            <ul class="mt-2.5">
+                                <li class="space-y-3">
+                                    <span class="inline-block text-13 font-bold text-[#ea1818] uppercase">Extra 10% OFF using Visa &amp; MasterCards</span>
+                                    <span class="inline-block text-13 font-bold text-[#ea1818] uppercase">up to 50% off on new order</span>
+                                </li>
+                                <li><a class="text-sm navlist-animation mt-2 text-black py-1.5 inline-block" href="collection-list-01.html">See more offers</a></li>
+                            </ul>
+                        </div>
+                        <!-- grid 2 -->
+                        <div>
+                            <h5 class="text-sm font-bold text-black hover:underline inline">Ullamcorper</h5>
+                            <ul class="mt-2.5">
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="urban-fashion.html">Cosmopolis</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="urban-fashion.html">Suitó</a></li>
+                            </ul>
+                        </div>
+                        <!-- grid-3 -->
+                        <div>
+                            <h5 class="text-sm font-bold text-black hover:underline inline">Donec Euismod</h5>
+                            <ul class="mt-2.5">
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="urban-fashion.html">Cosmopolis</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="urban-fashion.html">Suitó</a></li>
+                            </ul>
+                        </div>
+                        <!-- grid-4 -->
+                        <div>
+                            <h5 class="text-sm font-bold text-black hover:underline inline">Tellus Bibendum</h5>
+                            <ul class="mt-2.5">
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="urban-fashion.html">Cosmopolis</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="urban-fashion.html">Suitó</a></li>
+                            </ul>
+                        </div>
+                        <!-- grid-5 -->
+                        <div>
+                            <h5 class="text-sm font-bold text-black hover:underline inline">Sagittis Risus</h5>
+                            <ul class="mt-2.5">
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="urban-fashion.html">Cosmopolis</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="urban-fashion.html">Suitó</a></li>
+                            </ul>
+                        </div>
+                        <!-- img -->
+                        <div class="inline-block overflow-hidden">
+                            <a href="card-product-detail-1.html">
+                                <img src="assets/images/u-trand.jpg" class="h-full object-cover w-full scale-100 hover:scale-105 transition-all duration-500" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- Trend -->
+            <li x-data="{ isOpen: false }" class="dropdown inline-block">
+                <a href="a.html" @click="isOpen = !isOpen" :class="{ 'underline decoration-2 underline-offset-4': isOpen }" class="inline-flex items-center text-base  text-white rounded py-4 hover:underline hover:decoration-2 hover:underline-offset-4 transition-all duration-500">Trend</a>
+                <div x-show="isOpen" @click.away="isOpen = false" class="px-4 xl:px-9 2xl:px-16 dropdown-menu w-full inset-x-0 top-16 absolute text-gray-700 bg-white py-8 shadow-xl z-30" style="display: none;">
+                    <div class="grid grid-cols-6 gap-6">
+                        <!-- grid 1 -->
+                        <div>
+                            <h5 class="text-sm font-bold text-black hover:underline inline">Offers</h5>
+                            <ul class="mt-2.5">
+                                <li class="space-y-3">
+                                    <span class="inline-block text-13 font-bold text-[#ea1818] uppercase">Extra 10% OFF using Visa &amp; MasterCards</span>
+                                    <span class="inline-block text-13 font-bold text-[#ea1818] uppercase">up to 50% off on new order</span>
+                                </li>
+                                <li><a class="text-sm navlist-animation mt-2 text-black py-1.5 inline-block" href="collection-list-01.html">See more offers</a></li>
+                            </ul>
+                        </div>
+                        <!-- grid 2 -->
+                        <div>
+                            <h5 class="text-sm font-bold text-black hover:underline inline">Quick Links</h5>
+                            <ul class="mt-2.5">
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="urban-fashion.html">What’s New</a></li>
+                                <li><a class="text-sm navlist-animation text-black py-1.5 inline-block capitalize hover:underline" href="urban-fashion.html">Best Selling</a></li>
+                            </ul>
+                        </div>
+                        <!-- grid 3 -->
+                        <div class="col-span-4">
+                            <div class="grid grid-cols-4 gap-6 font-chivo">
+                                <div>
+                                    <a class="inline-block overflow-hidden" href="collection-list-01.html">
+                                        <img src="assets/images/1.jpg" class="h-full w-full scale-100 hover:scale-105 transition-all duration-500" alt="">
+                                    </a>
+                                    <div class="text-center p-3">
+                                        <h4 class="font-black  text-15 uppercase text-black">Street Style</h4>
+                                        <a class=" text-15 navlist-animation text-black inline-block " href="collection-list-01.html">Shop Now</a>
+                                    </div>
+                                </div>
+                                <!-- card 2 -->
+                                <div>
+                                    <a class="inline-block overflow-hidden" href="collection-list-01.html">
+                                        <img src="assets/images/2.jpg" class="h-full w-full scale-100 hover:scale-105 transition-all duration-500" alt="">
+                                    </a>
+                                    <div class="text-center p-3">
+                                        <h4 class="font-black  text-15 uppercase text-black">BE UNIQUE</h4>
+                                        <a class=" text-15 navlist-animation text-black inline-block " href="collection-list-01.html">Shop Now</a>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a class="inline-block overflow-hidden" href="collection-list-01.html">
+                                        <img src="assets/images/3.jpg" class="h-full w-full scale-100 hover:scale-105 transition-all duration-500" alt="">
+                                    </a>
+                                    <div class="text-center p-3">
+                                        <h4 class="font-black  text-15 uppercase text-black">LIMITED SALE</h4>
+                                        <a class=" text-15 navlist-animation text-black inline-block " href="collection-list-01.html">Shop Now</a>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a class="inline-block overflow-hidden" href="collection-list-01.html">
+                                        <img src="assets/images/4.jpg" class="h-full w-full scale-100 hover:scale-105 transition-all duration-500" alt="">
+                                    </a>
+                                    <div class="text-center p-3">
+                                        <h4 class="font-black  text-15 uppercase text-black">CLEARANCE</h4>
+                                        <a class=" text-15 navlist-animation text-black inline-block " href="collection-list-01.html">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="flex items-center justify-end gap-3 lg:gap-5 xl:gap-3 z-30 cursor-pointer">
+            <!-- search -->
+            <div x-data="{ isOpen: false }" class="dropdown inline-block group">
+                <div>
+                    <form action="#" @click="isOpen = !isOpen" :class="{ 'underline decoration-2 underline-offset-4': isOpen }">
+                        <svg class="w-6 h-6 lg:fill-white group-hover:scale-110" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 453.54 453.54" aria-hidden="true" focusable="false" role="presentation">
+                            <path d="M168.34,3.37C82.1,17.52,15.92,84.07,3.37,169.2c-2.71,18.58-1.85,51.67,1.85,68.89,22.88,106,124.37,173.21,231.39,152.79,28.54-5.41,57.82-18.94,83.17-38.75l7.5-5.78,50.93,51c28.05,28.05,52.41,51.79,54.25,52.78,12.18,6.39,24.11-5.54,17.72-17.72-1-1.84-24.73-26.2-52.78-54.25l-51-50.93,5.78-7.5c36.78-47.24,50.31-104.94,38.26-162.64C374.64,81.49,314.73,21.82,238,5.22,222.84,1.89,183.35.91,168.34,3.37Zm64.83,27.8a164.6,164.6,0,0,1,58.31,24.36c38.26,25.47,64,63.23,73.81,108.5,2.71,12.43,3.69,42.08,1.85,55.73A171,171,0,0,1,219.76,367.14c-13.65,1.84-43.3.86-55.73-1.85C96.5,350.65,45.44,299.72,30.93,232.56c-3.57-16.74-3.94-50.07-.62-66.43C44.21,97.23,98.09,43.47,165.88,30.68c15.5-2.95,16.11-3.07,36.29-2.58C215.33,28.47,224.93,29.33,233.17,31.17Z"></path>
+                        </svg>
+                    </form>
+                </div>
+                <div x-show="isOpen" @click.away="isOpen = false" class="px-4 xl:px-9 2xl:px-[160px] dropdown-menu w-full inset-x-0 top-16 bg-white absolute text-gray-700 pb-3 shadow-xl z-30 overflow-y-auto" style="display: none;">
+                    <div>
+                        <div class="">
+                            <form action="#" class="px-5 py-6 max-w-[600px] mx-auto hidden xl:block">
+                                <div class="flex justify-between border-gray-200">
+                                    <div class="border-b flex-grow">
+                                        <input type="text" class="bg-white w-full text-base font-jost  pb-1.5 placeholder:text-[#808080] text-black focus:text-black focus:border-transparent focus:outline-0" placeholder="Search for anything">
+                                    </div>
+                                    <svg class="w-7  transform rotate-[270deg] fill-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false" role="presentation">
+                                        <path d="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z"></path>
+                                    </svg>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="py-5 xl:py-8">
+                            <div class="flex justify-between items-center gap-4 mb-6 ">
+                                <h3 class="text-base font-bold relative">
+                                    <span class="relative z-10 pr-5 bg-white text-black upperase">Trending</span>
+                                </h3>
+                                <div @click="modal = false;  document.body.classList.remove('overflow-y-hidden') " class="cursor-pointer fixed top-0 left-[90%] md:left-[400px] bg-black p-3 w-10 h-10 z-[99] xl:hidden" id="close-button">
+                                    <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" aria-hidden="true" focusable="false" role="presentation">
+                                        <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <ul class="flex flex-wrap gap-4">
+                                <li>
+                                    <a class="flex inline-flex border-[2px] rounded-md border-[#cccccc] py-1.5 px-3" href="header-shopify.html">
+                                        <svg class="w-5 mr-1 transform rotate-[260deg]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false" role="presentation">
+                                            <path d="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z"></path>
+                                        </svg>
+                                        <span class="text-sm font-chivo text-[#505050]">Clothing themes</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- log in -->
+            <button type="button" x-data="{id:'modal-example'}" @click="$dispatch('modal-overlay', {id})">
+                <div class="text-base group text-black transition-all duration-500 hover:text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 453.54 453.54" aria-hidden="true" focusable="false" role="presentation" class="icon icon-account w-6 h-6 fill-white group-hover:scale-110">
+                        <path d="M223.27,230.38A113.83,113.83,0,1,1,337.09,116.56,113.59,113.59,0,0,1,223.27,230.38Zm0-192.62a78.8,78.8,0,1,0,78.8,78.8A78.47,78.47,0,0,0,223.27,37.76Z"></path>
+                        <path d="M69.17,368.72V444.3c0,8.68-35,8.68-35,0V368.72c0-69.17,84.93-122.58,192.62-122.58s192.62,53.41,192.62,122.58V444.3c0,8.68-35,8.68-35,0V368.72c0-47.28-71.79-87.56-157.6-87.56S69.17,321.44,69.17,368.72Z"></path>
+                    </svg>
+                </div>
+            </button>
+            <div class="fixed inset-0 lg:flex lg:flex-col h-full lg:items-end bg-[#0000004d] sm:justify-start z-[99]" x-data="{modal: false}" x-show="modal" @modal-overlay.window="if ($event.detail.id === 'modal-example') modal = true; document.body.classList.add('overflow-y-hidden')" x-transition:enter="transition ease-out duration-300" style="display: none;">
+                <div @click.away="modal = false; document.body.classList.remove('overflow-y-hidden') " class="bg-white h-full w-[90%] ml-auto md:w-[500px] relative">
+                    <!-- Close Button -->
+                    <div class="w-full h-screen overflow-y-auto font-chivo">
+                        <div @click="modal = false;  document.body.classList.remove('overflow-y-hidden') " class="cursor-pointer absolute top-4 end-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 48 48" aria-hidden="true" focusable="false" role="presentation">
+                                <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl  font-chivo text-center mt-5">Login</h2>
+                        <div class="p-8">
+                            <form action="#">
+                                <div class="mb-8">
+                                    <label for="" class="text-14 text-[#202020]">Your Username *</label>
+                                    <input type="text" class="mt-2.5 border placeholder:text-sm placeholder:text-gray-300 border-[#c7c7c7] w-full py-2 px-4 focus:outline-none" placeholder="Your username">
+                                    <div class="mt-2">
+                                        <label for="" class="text-14 text-[#202020]">Your Password *</label>
+                                        <input type="password" class=" border mt-2.5 placeholder:text-sm placeholder:text-gray-300 border-[#c7c7c7] w-full py-2 px-4 focus:outline-none" placeholder="Your password">
+                                    </div>
+                                </div>
+                                <a class="text-sm  font-chivo uppercase py-2 text-center block px-4 bg-[#3de417] text-black hover:bg-[#54903e] w-full hover:text-white" href="log-in.html">Log In
+                                </a>
+                                <a class="text-sm  font-chivo uppercase py-2 text-center block px-4 bg-[#e5e5e5] text-black hover:bg-black w-full hover:text-white mt-3" href="signup.html">Sign up
+                                </a>
+                                <a class="text-sm block  hover:text-ellipsis-red-500 hover:underline mt-5 text-center" href="register-account.html">Forgot password?</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- cart -->
+            <button type="button" x-data="{id:'modal-2'}" @click="$dispatch('modal-overlay', {id})">
+                <span class="relative inline-flex group">
+                    <div class="text-base  text-white transition-all duration-500  group-hover:scale-110" disabled="">
+                        <svg class="w-6 h-6 lg:fill-white" xmlns=" http://www.w3.org/2000/svg" viewBox="0 0 453.54 453.54" aria-hidden="true" focusable="false" role="presentation">
+                            <path d="M301.14,92.92V78a74.37,74.37,0,0,0-148.73,0V92.92H63.17V449.86h327.2V92.92ZM182.15,78a44.62,44.62,0,1,1,89.24,0V92.92H182.15ZM360.63,420.12H92.92V122.66h59.49v44.62h29.74V122.66h89.24v44.62h29.75V122.66h59.49Z"></path>
+                        </svg>
+                    </div>
+                    <span class="absolute top-0 right-0 flex w-8 h-8 -mt-1 -mr-4 sm:-mr-5">
+                        <span class="relative flex items-center justify-center w-4 h-4 text-xs text-black bg-white rounded-full">5</span>
+                    </span>
+                </span>
+            </button>
+            <!-- cart in Modal -->
+            <div class="fixed inset-0 lg:flex lg:flex-col font-chivo lg:items-end bg-[#0000004d] sm:justify-start z-10 h-screen" x-data="{modal: false}" x-show="modal" @modal-overlay.window="if ($event.detail.id === 'modal-2') modal = true" x-transition:enter="transition ease-out duration-300" style="display: none;">
+                <div @click.away="modal = false; document.body.classList.remove('overflow-y-hidden') " class="bg-white h-full w-[90%] ml-auto md:w-[500px] px-5 py-8 md:p-8 relative">
+                    <!-- Close Button -->
+                    <div @click="modal = false;  document.body.classList.remove('overflow-y-hidden') " class="cursor-pointer absolute top-4 end-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 48 48" aria-hidden="true" focusable="false" role="presentation">
+                            <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl  font-chivo text-center">My Cart (0)</h2>
+                    <div class="mt-8">
+                        <div class="border border-gray-100 flex relative">
+                            <img src="assets/images/2.jpg" alt="" class="max-w-[110px]">
+                            <div class="py-3 px-5 mt-2">
+                                <h3 class="text-lg font-medium">(Product 9) Sample</h3>
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-base font-bold">$39.00</h3>
+                                    <!-- Input Number -->
+                                    <div class="py-2 px-3 w-20 bg-white border border-gray-100">
+                                        <div class="w-full flex justify-between items-center gap-x-5">
+                                            <div class="grow">
+                                                <input class="w-full p-0 bg-transparent border-0 text-black" type="text" value="3" data-hs-input-number-input="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Input Number -->
+                                </div>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 absolute top-2.5 right-2" viewBox="0 0 48 48" aria-hidden="true" focusable="false" role="presentation">
+                                <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex gap-6 mt-20">
+                            <div class="text-sm font-bold flex-shrink-0">
+                                <p>Sub Total</p>
+                                <p>Shipping</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-bold">$195.00</p>
+                                <p class="text-sm text-[#808080] italic">Taxes and shipping fee will be calculated at checkout</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center my-5   font-chivo">
+                            <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                            <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="a.html" class="border-b border-black">Terms &amp; conditions</a></label>
+                        </div>
+                        <div class="space-y-2">
+                            <a class="cursor-default text-sm  font-chivo uppercase py-2 text-center block px-4 bg-[#3de417] text-black opacity-70 w-full " href="log-in.html">checkout-$195.00
+                            </a>
+                            <a class="text-sm  upperase py-2 text-center block px-4 bg-black text-white uppercase" href="collection-all.html">View Cart
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </div>
+</nav>
+
+<div class="relative hidden" id="responsive-sidebar">
+    <ul class="nav-item w-[90%]  md:w-[465px] bg-white fixed top-0 h-full z-[999] overflow-y-auto font-chivo">
+        <div>
+            <li class="dropdown inline-block  w-full">
+                <a href="/" class="block items-center text-base   border-b border-[#e6e6e6] text-gray-950 py-3 px-6 hover:underline transition-all duration-500">Home</a>
+            </li>
+            <!-- shop -->
+            <li class="dropdown inline-block  w-full">
+                <a href="a.html" class="block items-center text-base   border-b border-[#e6e6e6] text-gray-950 py-3 px-6 hover:underline transition-all duration-500">Shop <img src="assets/images/menu-right-arrow.png" class="w-2 float-end mt-1" alt=""></a>
+                <ul class="dropdown-menu w-[90%]  md:w-[465px] h-full hidden fixed top-0 left-0 bg-white overflow-y-auto">
+                    <div class="flex bg-[#e6e6e6] items-center py-3 px-5">
+                        <a href="a.html" class="shrink-0 back-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="move-left" class="lucide lucide-move-left">
+                                <path d="M6 8L2 12L6 16"></path>
+                                <path d="M2 12H22"></path>
+                            </svg>
+                        </a>
+                        <a href="a.html" class=" flex-grow text-center items-center text-15 font-bold text-gray-950 uppercase hover:underline transition-all duration-500 w-full">Shop</a>
+                    </div>
+                    <li>
+                        <a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='shop-all.html'>Go to Shop </a>
+                    </li>
+                    <li class="overflow-y-auto">
+                        <a href="a.html" class="block submenu text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]">
+                            Collection Lists<img src="assets/images/menu-right-arrow.png" class="w-2 float-end mt-1" alt=""> </a>
+                        <!-- second -->
+                        <ul class="h-full fixed bg-white !top-0 left-0 w-[90%] md:w-[465px] hidden overflow-y-auto">
+                            <div class="flex bg-[#e6e6e6] items-center py-3 px-5">
+                                <a href="a.html" class="shrink-0 back-arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="move-left" class="lucide lucide-move-left">
+                                        <path d="M6 8L2 12L6 16"></path>
+                                        <path d="M2 12H22"></path>
+                                    </svg>
+                                </a>
+                                <a href="a.html" class=" flex-grow text-center items-center text-15 font-bold text-gray-950 uppercase hover:underline transition-all duration-500 w-full">collection lists</a>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='collection-list-01.html'>Go to Shop </a>
+                                </li>
+                                <li><a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='collection-list-01.html'>Collection List 01</a></li>
+                                <li><a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='collection-list-01.html'>More coming soon</a></li>
+                            </ul>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <!-- product -->
+            <li class="dropdown inline-block  w-full">
+                <a href="a.html" class="block items-center text-base   border-b border-[#e6e6e6] text-gray-950 py-3 px-6 hover:underline transition-all duration-50">Product <img src="assets/images/menu-right-arrow.png" class="w-2 float-end mt-1" alt=""></a>
+                <ul class="dropdown-menu w-[90%]  md:w-[465px] h-full hidden fixed top-0 left-0 bg-white overflow-y-auto">
+                    <div class="flex bg-[#e6e6e6] items-center py-3 px-5">
+                        <a href="a.html" class="shrink-0 back-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="move-left" class="lucide lucide-move-left">
+                                <path d="M6 8L2 12L6 16"></path>
+                                <path d="M2 12H22"></path>
+                            </svg>
+                        </a>
+                        <a href="a.html" class=" flex-grow text-center items-center text-15 font-bold text-gray-950 uppercase hover:underline transition-all duration-500 w-full">product</a>
+                    </div>
+                    <li>
+                        <a href="product-all.html" class="block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]">Go to product </a>
+                    </li>
+                    <li>
+                        <a href="a.html" class="block submenu text-15 w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]">
+                            Product Pages<img src="assets/images/menu-right-arrow.png" class="w-2 float-end mt-1" alt=""> </a>
+                        <!-- second -->
+                        <ul class="h-full fixed bg-white !top-0 left-0 w-[90%] md:w-[465px] hidden overflow-y-auto">
+                            <div class="flex bg-[#e6e6e6] items-center py-3 px-5">
+                                <a href="a.html" class="shrink-0 back-arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="move-left" class="lucide lucide-move-left">
+                                        <path d="M6 8L2 12L6 16"></path>
+                                        <path d="M2 12H22"></path>
+                                    </svg>
+                                </a>
+                                <a href="a.html" class="flex-grow text-center items-center text-15 font-bold text-gray-950 uppercase hover:underline transition-all duration-500 w-full">Product Pages</a>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='collection-list-01.html'>Go to Product Pages </a>
+                                </li>
+                                <li><a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='card-product-detail.html'>Product Page 01</a></li>
+                                <li><a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='card-product-detail-2.html'>More coming soon</a></li>
+                            </ul>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <!-- blog -->
+            <li class="dropdown inline-block  w-full">
+                <a href="a.html" class="block items-center text-base   border-b border-[#e6e6e6] text-gray-950 py-3 px-6 hover:underline transition-all duration-500">Blog <img src="assets/images/menu-right-arrow.png" class="w-2 float-end mt-1" alt=""></a>
+                <ul class="dropdown-menu w-[90%]  md:w-[465px] h-full hidden fixed top-0 left-0 bg-white">
+                    <div class="flex bg-[#e6e6e6] items-center py-3 px-5">
+                        <a href="a.html" class="shrink-0 back-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="move-left" class="lucide lucide-move-left">
+                                <path d="M6 8L2 12L6 16"></path>
+                                <path d="M2 12H22"></path>
+                            </svg>
+                        </a>
+                        <a href="a.html" class=" flex-grow text-center items-center text-15 font-bold text-gray-950 uppercase hover:underline transition-all duration-500 w-full">Blog</a>
+                    </div>
+                    <ul>
+                        <a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='shop-all.html'>Go to Blog </a>
+                        <li><a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='blog-01.html'>Blog 01</a></li>
+                        <li><a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='blog-02.html'>Blog 02</a></li>
+                    </ul>
+                </ul>
+            </li>
+            <!-- pages -->
+            <li class="dropdown inline-block  w-full">
+                <a href="a.html" class="block items-center text-base   border-b border-[#e6e6e6] text-gray-950 py-3 px-6 hover:underline transition-all duration-500">Pages <img src="assets/images/menu-right-arrow.png" class="w-2 float-end mt-1" alt=""></a>
+                <ul class="dropdown-menu w-[90%]  md:w-[465px] h-full hidden fixed top-0 left-0 bg-white overflow-y-auto">
+                    <div class="flex bg-[#e6e6e6] items-center py-3 px-5">
+                        <a href="a.html" class="shrink-0 back-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="move-left" class="lucide lucide-move-left">
+                                <path d="M6 8L2 12L6 16"></path>
+                                <path d="M2 12H22"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class=" flex-grow text-center items-center text-15 font-bold text-gray-950 uppercase hover:underline transition-all duration-500 w-full">Pages</a>
+                    </div>
+                    <li>
+                        <a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='pages.html'>Go to Pages </a>
+                    </li>
+                    <li>
+                        <a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='brands.html'>Brands</a>
+                    </li>
+                    <li>
+                        <a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='bulk-editor.html'>Bulk Editor</a>
+                    </li>
+                    <li>
+                        <a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='store-location.html'>Store Locations</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- new in -->
+            <li class="dropdown inline-block  w-full">
+                <a href="a.html" class="block items-center text-base   border-b border-[#e6e6e6] text-gray-950 py-3 px-6 hover:underline transition-all duration-500">New In <img src="assets/images/menu-right-arrow.png" class="w-2 float-end mt-1" alt=""></a>
+                <ul class="dropdown-menu w-[90%]  md:w-[465px] h-full hidden fixed top-0 left-0 bg-white overflow-y-auto">
+                    <div class="flex bg-[#e6e6e6] items-center py-3 px-5">
+                        <a href="a.html" class="shrink-0 back-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="move-left" class="lucide lucide-move-left">
+                                <path d="M6 8L2 12L6 16"></path>
+                                <path d="M2 12H22"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class=" flex-grow text-center items-center text-15 font-bold text-gray-950 uppercase hover:underline transition-all duration-500 w-full"> New In</a>
+                    </div>
+                    <li>
+                        <a class='block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]' href='pages.html'>Go to New In </a>
+                    </li>
+                    <!-- Offers -->
+                    <li class="overflow-y-auto">
+                        <a href="a.html" class="block submenu text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]">
+                            Offers<img src="assets/images/menu-right-arrow.png" class="w-2 float-end mt-1" alt=""> </a>
+                        <!-- second -->
+                        <ul class="h-full fixed bg-white !top-0 left-0 w-[90%] md:w-[465px] hidden overflow-y-auto">
+                            <div class="flex bg-[#e6e6e6] items-center py-3 px-5">
+                                <a href="a.html" class="shrink-0 back-arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="move-left" class="lucide lucide-move-left">
+                                        <path d="M6 8L2 12L6 16"></path>
+                                        <path d="M2 12H22"></path>
+                                    </svg>
+                                </a>
+                                <a href="#" class=" flex-grow text-center items-center text-15 font-bold text-gray-950 uppercase hover:underline transition-all duration-500 w-full">offers</a>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a href="offers-3.html" class="block text-sm w-full text-gray-950 capitalize rounded py-3 px-5 border-b border-[#e6e6e6]">Go to offers </a>
+                                </li>
+                                <li class="space-y-3 p-4 ">
+                                    <span class="inline-block text-13 uppercase font-bold text-primary-500">Extra 10% OFF using Visa & MasterCards</span>
+                                    <span class="inline-block text-13 uppercase font-bold text-primary-500">up to 50% off on new order</span>
+                                    <span class="inline-block text-13 uppercase font-bold text-primary-500">extra discount for first halo app installment</span>
+                                </li>
+                                <li class="px-4 border-b border-[#e6e6e6]"><a class='text-base navlist-animation text-black py-1.5 inline-block' href='collection-list-01.html'>See more offers</a></li>
+                                <li class="p-4 border-b border-[#e6e6e6]">
+                                    <a href='card-product-detail-1.html'>
+                                        <img src="assets/images/u-trand.jpg" class="h-full object-cover w-full " alt="">
+                                    </a>
+                                </li>
+                            </ul>
+                        </ul>
+                    </li>
+                    <li>
+                        <li class="p-4 border-b border-[#e6e6e6]">
+                            <a href='card-product-detail-1.html'>
+                                <img src="assets/images/u-trand.jpg" class="h-full object-cover w-full " alt="">
+                            </a>
+                        </li>
+                    </li>
+                </ul>
+            </li>
+        </div>
+    </ul>
+    <div class="fixed top-0 left-0 w-full h-full bg-[#0000004d] z-[99]" id="menu-overlay">
+    </div>
+    <div class="cursor-pointer fixed top-0 left-[90%] md:left-[465px] bg-black p-3 w-10 h-10 z-[99]" id="close-button">
+        <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 48 48" aria-hidden="true" focusable="false" role="presentation">
+            <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+        </svg>
+    </div>
+</div>
+
+<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
+  {%- liquid
+    assign social_links = false
+    assign localization_forms = false
+
+    if settings.social_twitter_link != blank or settings.social_facebook_link != blank or settings.social_pinterest_link != blank or settings.social_instagram_link != blank or settings.social_youtube_link != blank or settings.social_vimeo_link != blank or settings.social_tiktok_link != blank or settings.social_tumblr_link != blank or settings.social_snapchat_link != blank
+      assign social_links = true
+    endif
+
+    if localization.available_countries.size > 1 and section.settings.enable_country_selector or section.settings.enable_language_selector and localization.available_languages.size > 1
+      assign localization_forms = true
+    endif
+  -%}
+  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
+    {%- liquid
+      if section.settings.menu != blank
+        render 'header-drawer'
+      endif
+
+      if section.settings.logo_position == 'top-center' or section.settings.menu == blank
+        render 'header-search', input_id: 'Search-In-Modal-1'
+      endif
+    -%}
+
+    {%- if section.settings.logo_position != 'middle-center' -%}
+      {%- if request.page_type == 'index' -%}
+        <h1 class="header__heading">
+      {%- endif -%}
+          <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
+            {%- if settings.logo != blank -%}
+              <div class="header__heading-logo-wrapper">
+                {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+                {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+                {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
+                {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+                {{ settings.logo | image_url: width: 600 | image_tag:
+                  class: 'header__heading-logo motion-reduce',
+                  widths: widths,
+                  height: logo_height,
+                  width: settings.logo_width,
+                  alt: logo_alt,
+                  sizes: sizes,
+                  preload: true
+                }}
+              </div>
+            {%- else -%}
+              <span class="h2">{{ shop.name }}</span>
+            {%- endif -%}
+          </a>
+      {%- if request.page_type == 'index' -%}
+        </h1>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- liquid
+      if section.settings.menu != blank
+        if section.settings.menu_type_desktop == 'dropdown'
+          render 'header-dropdown-menu'
+        elsif section.settings.menu_type_desktop != 'drawer'
+          render 'header-mega-menu'
+        endif
+      endif
+    %}
+
+    {%- if section.settings.logo_position == 'middle-center' -%}
+      {%- if request.page_type == 'index' -%}
+        <h1 class="header__heading">
+      {%- endif -%}
+          <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
+            {%- if settings.logo != blank -%}
+              <div class="header__heading-logo-wrapper">
+                {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+                {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+                {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
+                {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+                {{ settings.logo | image_url: width: 600 | image_tag:
+                  class: 'header__heading-logo',
+                  widths: widths,
+                  height: logo_height,
+                  width: settings.logo_width,
+                  alt: logo_alt,
+                  sizes: sizes,
+                  preload: true
+                }}
+              </div>
+            {%- else -%}
+              <span class="h2">{{ shop.name }}</span>
+            {%- endif -%}
+          </a>
+      {%- if request.page_type == 'index' -%}
+        </h1>
+      {%- endif -%}
+    {%- endif -%}
+
+    <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
+      <div class="desktop-localization-wrapper">
+        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+          <localization-form class="small-hide medium-hide" data-prevent-hide>
+            {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                {%- render 'country-localization', localPosition: 'HeaderCountry' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {% endif %}
+
+        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+          <localization-form class="small-hide medium-hide" data-prevent-hide>
+            {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}</h2>
+                {%- render 'language-localization', localPosition: 'HeaderLanguage' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {%- endif -%}
+      </div>
+      {% render 'header-search', input_id: 'Search-In-Modal' %}
+
+      {%- if shop.customer_accounts_enabled -%}
+        <a
+          href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+          class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
+          rel="nofollow"
+        >
+          {%- if section.settings.enable_customer_avatar -%}
+            <account-icon>
+              {%- if customer and customer.has_avatar? -%}
+                {{ customer | avatar }}
+              {%- else -%}
+                <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+              {%- endif -%}
+            </account-icon>
+          {%- else -%}
+            <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+          {%- endif -%}
+          <span class="visually-hidden">
+            {%- liquid
+              if customer
+                echo 'customer.account_fallback' | t
+              else
+                echo 'customer.log_in' | t
+              endif
+            -%}
+          </span>
+        </a>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            {% render block %}
+        {%- endcase -%}
+      {%- endfor -%}
+
+      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+          {% if cart == empty %}
+            <span class="svg-wrapper">{{'icon-cart-empty.svg' | inline_asset_content }}</span>
+          {% else %}
+            <span class="svg-wrapper">{{'icon-cart.svg' | inline_asset_content }}</span>
+          {% endif %}
+        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+        {%- if cart != empty -%}
+          <div class="cart-count-bubble">
+            {%- if cart.item_count < 100 -%}
+              <span aria-hidden="true">{{ cart.item_count }}</span>
+            {%- endif -%}
+            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+          </div>
+        {%- endif -%}
+      </a>
+    </div>
+  </header>
+</{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
+
+{%- if settings.cart_type == "notification" -%}
+  {%- render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type: section.settings.menu_type_desktop -%}
+{%- endif -%}
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {% if settings.logo %}
+      "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
+    {% endif %}
+    "sameAs": [
+      {{ settings.social_twitter_link | json }},
+      {{ settings.social_facebook_link | json }},
+      {{ settings.social_pinterest_link | json }},
+      {{ settings.social_instagram_link | json }},
+      {{ settings.social_tiktok_link | json }},
+      {{ settings.social_tumblr_link | json }},
+      {{ settings.social_snapchat_link | json }},
+      {{ settings.social_youtube_link | json }},
+      {{ settings.social_vimeo_link | json }}
+    ],
+    "url": {{ request.origin | append: page.url | json }}
+  }
+</script>
+
+{%- if request.page_type == 'index' -%}
+  {% assign potential_action_target = request.origin | append: routes.search_url | append: "?q={search_term_string}" %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ request.origin | append: page.url | json }}
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "class": "section-header",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "select",
+      "id": "logo_position",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "t:sections.header.settings.logo_position.options__2.label"
+        },
+        {
+          "value": "top-center",
+          "label": "t:sections.header.settings.logo_position.options__3.label"
+        },
+        {
+          "value": "middle-left",
+          "label": "t:sections.header.settings.logo_position.options__1.label"
+        },
+        {
+          "value": "middle-center",
+          "label": "t:sections.header.settings.logo_position.options__4.label"
+        }
+      ],
+      "default": "middle-left",
+      "label": "t:sections.header.settings.logo_position.label",
+      "info": "t:sections.header.settings.logo_help.content"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "t:sections.header.settings.menu.label"
+    },
+    {
+      "type": "select",
+      "id": "menu_type_desktop",
+      "options": [
+        {
+          "value": "dropdown",
+          "label": "t:sections.header.settings.menu_type_desktop.options__1.label"
+        },
+        {
+          "value": "mega",
+          "label": "t:sections.header.settings.menu_type_desktop.options__2.label"
+        },
+        {
+          "value": "drawer",
+          "label": "t:sections.header.settings.menu_type_desktop.options__3.label"
+        }
+      ],
+      "default": "dropdown",
+      "label": "t:sections.header.settings.menu_type_desktop.label",
+      "info": "t:sections.header.settings.menu_type_desktop.info"
+    },
+    {
+      "type": "select",
+      "id": "sticky_header_type",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.header.settings.sticky_header_type.options__1.label"
+        },
+        {
+          "value": "on-scroll-up",
+          "label": "t:sections.header.settings.sticky_header_type.options__2.label"
+        },
+        {
+          "value": "always",
+          "label": "t:sections.header.settings.sticky_header_type.options__3.label"
+        },
+        {
+          "value": "reduce-logo-size",
+          "label": "t:sections.header.settings.sticky_header_type.options__4.label"
+        }
+      ],
+      "default": "on-scroll-up",
+      "label": "t:sections.header.settings.sticky_header_type.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_line_separator",
+      "default": true,
+      "label": "t:sections.header.settings.show_line_separator.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.header__1.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "menu_color_scheme",
+      "label": "t:sections.header.settings.menu_color_scheme.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.header__3.content",
+      "info": "t:sections.header.settings.header__4.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": false,
+      "label": "t:sections.header.settings.enable_country_selector.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.header__5.content",
+      "info": "t:sections.header.settings.header__6.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": false,
+      "label": "t:sections.header.settings.enable_language_selector.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.header__7.content",
+      "info": "t:sections.header.settings.header__7.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_customer_avatar",
+      "default": true,
+      "label": "t:sections.header.settings.enable_customer_avatar.label",
+      "info": "t:sections.header.settings.enable_customer_avatar.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.mobile_layout.content"
+    },
+    {
+      "type": "select",
+      "id": "mobile_logo_position",
+      "options": [
+        {
+          "value": "center",
+          "label": "t:sections.header.settings.mobile_logo_position.options__1.label"
+        },
+        {
+          "value": "left",
+          "label": "t:sections.header.settings.mobile_logo_position.options__2.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.header.settings.mobile_logo_position.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.header.settings.margin_bottom.label",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
+}
+{% endschema %}
